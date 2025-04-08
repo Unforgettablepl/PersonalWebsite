@@ -1,0 +1,1 @@
+body{background-color:#010b13;color:#fff;font-family:jetbrains mono,monospace}h1{font-size:xxx-large}h2{font-size:xx-large}p{font-size:large}a{color:#fff}a[target=_blank]::after{content:"↗";text-decoration:none;display:inline-block;margin-left:.2em;font-size:1.3em;vertical-align:middle;position:relative;top:-.1em}hr{border-color:gray}

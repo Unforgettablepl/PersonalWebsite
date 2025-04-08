@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ .Title }}</title>
+    <meta name="description" content="{{ .Description }}">
+    {{ if .Site.Params.favicon }}
+        <link rel="canonical" href="/favicon.ico">
+    {{ end }}
+
+    <link rel="canonical" href="{{ .Site.BaseURL }}{{ .Permalink }}">
+    <link rel="stylesheet" href="{{ (resources.Get "css/main.css" | resources.Minify).RelPermalink }}">
+</head>
+<body>
+<div style="max-width: min(900px,90vw);justify-content: center;margin: auto;">
+    <h1 style="font-size: xxx-large">My Personal Blog</h1>
+    <div style="display: flex;column-gap: 30px;font-size: x-large;">
+        <a href="/">Home</a>
+        <a href="/guide">Guide to Indian OI</a>
+        <a href="/achievements">Achievements</a>
+    </div>
+    <hr style="margin-top: 3vh;border-color: white;">
+    <h1>{{ .Title }}</h1>
+    {{ .Content }}
+</div>
+</body>
+</html>

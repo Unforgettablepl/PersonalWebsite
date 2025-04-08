@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Home on Samik Goyal</title>
+    <link>http://localhost:1313/</link>
+    <description>Recent content in Home on Samik Goyal</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 01 Jan 0001 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Indian Olympiads in Informatics Guide</title>
+      <link>http://localhost:1313/posts/guide/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/guide/</guid>
+      <description>&lt;style&gt;&#xD;&#xA;body{&#xD;&#xA;    text-align: justify;&#xD;&#xA;}&#xD;&#xA;.block{&#xD;&#xA;    padding: 15px;&#xD;&#xA;    margin-bottom: 10px;&#xD;&#xA;    border-radius: 5px;&#xD;&#xA;}&#xD;&#xA;.warning{&#xD;&#xA;    background-color: #342610;&#xD;&#xA;    color: #f8e150;&#xD;&#xA;}&#xD;&#xA;.danger{&#xD;&#xA;    background-color: #391413;&#xD;&#xA;    color: #f4a6a4;&#xD;&#xA;}&#xD;&#xA;&lt;/style&gt;&#xD;&#xA;&lt;h3 id=&#34;created-by-samik-goyal-and-co-authored-by-my-personal-grammarly-priyanka-zele-3&#34;&gt;Created by Samik Goyal and Co-authored by my personal Grammarly Priyanka Zele &amp;lt;3&lt;/h3&gt;&#xA;&lt;hr&gt;&#xA;&lt;p&gt;This guide has been created by me to serve as a simple &amp;lsquo;Getting Started&amp;rsquo; guide for people for the Indian Computing Olympiads (ZCO, ZIO, and INOI).&lt;/p&gt;&#xA;&lt;p&gt;I won&amp;rsquo;t go into detail about topics which are not Indian Olympiad specific, and will instead provide external links in such cases.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>
