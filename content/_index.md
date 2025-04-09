@@ -1,9 +1,11 @@
-+++
-title = 'Home'
-date = 2023-01-01T08:00:00-07:00
-draft = false
-+++
+## About me
 
-Laborum voluptate pariatur ex culpa magna nostrud est incididunt fugiat
-pariatur do dolor ipsum enim. Consequat tempor do dolor eu. Non id id anim anim
-excepteur excepteur pariatur nostrud qui irure ullamco.
+I am Samik Goyal, an IOI-2024 Silver medallist from India. I also love cycling and running. I am also interested in the INAIO Olympiad, ranking third in the national stage.
+
+## Contact me
+
+You can reach out to me on [samikgoyal@gmail.com](mailto:samikgoyal@gmail.com) or on [LinkedIn](https://www.linkedin.com/in/samik-goyal/).
+
+## Archival
+
+As this website stores a lot of valuable data under the data tab, it has been archived at 

@@ -3,6 +3,10 @@ body{
     color: white;
     font-family: "JetBrains Mono", monospace;
 }
+
+* {
+    scrollbar-color: #242124 transparent;
+}
 h1 {
     font-size: xxx-large;
 }
@@ -27,4 +31,20 @@ a[target="_blank"]::after {
 }
 hr{
     border-color: gray;
+}
+.post{
+    text-align: justify;
+}
+.block{
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
+.warning{
+    background-color: #342610;
+    color: #f8e150;
+}
+.danger{
+    background-color: #391413;
+    color: #f4a6a4;
 }

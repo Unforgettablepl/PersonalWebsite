@@ -3,12 +3,13 @@ languageCode = 'en-us'
 url = "https://myawesomewebsite.com"
 title = "Samik Goyal"
 theme = "main"
+buildFuture = true
 
 [params]
 description = "I am an Indian IOI-2024 Silver Medallist. Explore my tutorials, tips, and achievements."
 #favicon = "favicon.ico"
 
-[markup]
-[markup.goldmark]
 [markup.goldmark.renderer]
 unsafe = true
+
+[taxonomies]

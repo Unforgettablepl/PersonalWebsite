@@ -1,26 +1,8 @@
 ---
 title: "Indian Olympiads in Informatics Guide"
 description: "A short guide to ZCO, ZIO, INOI and IOITC."
-layout: "post"
+date: "2025-04-01"
 ---
-<style>
-body{
-    text-align: justify;
-}
-.block{
-    padding: 15px;
-    margin-bottom: 10px;
-    border-radius: 5px;
-}
-.warning{
-    background-color: #342610;
-    color: #f8e150;
-}
-.danger{
-    background-color: #391413;
-    color: #f4a6a4;
-}
-</style>
 ### Created by Samik Goyal and Co-authored by my personal Grammarly Priyanka Zele <3
 
 ---
@@ -89,7 +71,7 @@ The INOI is a **3 hour** exam usually held from **2:00 PM** to **5:00 PM**. It c
 
 It should be noted that, class and gender based cutoffs hardly make any difference in the cutoffs for ZCO, as anyone good enough to clear INOI is usually able to clear ZCO with a big margin. However, in INOI, for the IOITC cutoffs, females have a significant advantage. In the last 3 years, the cutoff for 12th Grade Females was lower than the cutoff for 8th Grade Males by about 40/300 marks. I have provided the cutoffs for the last few years at the end of this guide, under the resources section.
 
-If you make it to IOITC, you can give the TSTs (Team Selection Tests). These are conducted for **3 days**, and are **5 hours** with **3 problems** each. The total score is taken as the sum of your score across every problem across every day. The top 4 scorers from the Indian deligation to the IOI. One should note that the style of problems in TSTs is significantly different than INOI. I have talked more about this afterwards.
+If you make it to IOITC, you can give the TSTs (Team Selection Tests). These are conducted for **3 days**, and are **5 hours** with **3 problems** each. The total score is taken as the sum of your score across every problem across every day. The top 4 scorers from the Indian delegation to the IOI. One should note that the style of problems in TSTs is significantly different than INOI. I have talked more about this afterwards.
 
 ---
 

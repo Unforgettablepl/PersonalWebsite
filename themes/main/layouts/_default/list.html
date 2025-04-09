@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ .Title }}</title>
+    <meta name="description" content="{{ .Description }}">
+    {{ if .Site.Params.favicon }}
+        <link rel="canonical" href="/favicon.ico">
+    {{ end }}
+
+    <link rel="canonical" href="{{ .Site.BaseURL }}{{ .Permalink }}">
+    <link rel="stylesheet" href="{{ (resources.Get "css/main.css" | resources.Minify).RelPermalink }}">
+</head>
+<body>
+{{partialCached "navbar.html" .}}
+    <h1>All Posts</h1>
+        {{ range .Pages }}
+        <div style="margin-bottom: 2rem; padding: 1.5rem; border-radius: 8px; background-color: rgba(255,255,255,0.1);">
+            <h2 style="margin-top: 0;margin-bottom: 0;"><a href="{{ .RelPermalink }}" style="text-decoration: none;">{{ .Title }}</a></h2>
+            <div style="font-size: medium; color: #aaa; margin: 0.5rem 0;">
+                <span>{{ .Date.Format "January 2, 2006" }}</span>
+            </div>
+            {{ if .Description }}
+                <p style="margin-top: 1rem;margin-bottom: 0;">{{ .Description }}</p>
+            {{ else }}
+                <p style="margin-top: 1rem;margin-bottom: 0;">{{ .Summary | truncate 150 }}</p>
+            {{ end }}
+        </div>
+        {{ end }}
+</div>
+</body>
+</html>
