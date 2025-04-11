@@ -26,20 +26,25 @@ jobs:
         run: |
           set -e
           
-          LATEST_VERSION_ID=$(curl -sL https://sandbox.zenodo.org/api/records/$CONCEPT_ID?access_token=$ZENODO_TOKEN | jq -r '.id')
+          LATEST_VERSION_ID=$(curl -L https://sandbox.zenodo.org/api/records/$CONCEPT_ID?access_token=$ZENODO_TOKEN | jq -r '.id')
           echo "Latest version ID: $LATEST_VERSION_ID"
           
-          NEW_VERSION_RESPONSE=$(curl -s -X POST https://sandbox.zenodo.org/api/deposit/depositions/$LATEST_VERSION_ID/actions/newversion?access_token=$ZENODO_TOKEN)
+          NEW_VERSION_RESPONSE=$(curl -X POST https://sandbox.zenodo.org/api/deposit/depositions/$LATEST_VERSION_ID/actions/newversion?access_token=$ZENODO_TOKEN)
           
           NEW_VERSION_ID=$(echo "$NEW_VERSION_RESPONSE" | jq -r '.id')
           SITE_ZIP_LINK=$(echo "$NEW_VERSION_RESPONSE" | jq -r '.files[] | select(.filename == "site.zip") | .links.self')
           echo "New version ID: $NEW_VERSION_ID"
+          NEW_VERSION_METADATA=$(echo "$NEW_VERSION_RESPONSE" | jq -r '.metadata')
           
           curl -i -X DELETE "$SITE_ZIP_LINK?access_token=$ZENODO_TOKEN"
           echo "Deleted old site.zip and uploading new file"
           
           curl -i https://sandbox.zenodo.org/api/deposit/depositions/$NEW_VERSION_ID/files?access_token=$ZENODO_TOKEN -F file=site.zip
           echo "Uploaded new site.zip"
-          
+
+          UPDATED_METADATA=$(jq --arg date "$(date +%Y-%m-%d)" '.publication_date = $date' <<< "$NEW_VERSION_METADATA")
+          curl -i -X PUT -H "Content-Type: application/json" https://sandbox.zenodo.org/api/deposit/depositions/$NEW_VERSION_ID?access_token=$ZENODO_TOKEN -d "{\"metadata\":$UPDATED_METADATA}"
+          echo "Updated metadata with today's date"
+
           curl -i -X POST https://sandbox.zenodo.org/api/deposit/depositions/$NEW_VERSION_ID/actions/publish?access_token=$ZENODO_TOKEN
           echo "Published new version"
