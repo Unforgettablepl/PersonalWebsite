@@ -39,7 +39,7 @@ jobs:
           curl -i -X DELETE "$SITE_ZIP_LINK?access_token=$ZENODO_TOKEN"
           echo "Deleted old site.zip and uploading new file"
           
-          curl -i https://sandbox.zenodo.org/api/deposit/depositions/$NEW_VERSION_ID/files?access_token=$ZENODO_TOKEN -F file=site.zip
+          curl -i https://sandbox.zenodo.org/api/deposit/depositions/$NEW_VERSION_ID/files?access_token=$ZENODO_TOKEN -F file=@site.zip
           echo "Uploaded new site.zip"
 
           UPDATED_METADATA=$(jq --arg date "$(date +%Y-%m-%d)" 'del(.pids) | .publication_date = $date' <<< "$NEW_VERSION_METADATA")
