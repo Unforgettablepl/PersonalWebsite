@@ -42,7 +42,7 @@ jobs:
           curl -i https://sandbox.zenodo.org/api/deposit/depositions/$NEW_VERSION_ID/files?access_token=$ZENODO_TOKEN -F file=site.zip
           echo "Uploaded new site.zip"
 
-          UPDATED_METADATA=$(jq --arg date "$(date +%Y-%m-%d)" '.publication_date = $date' <<< "$NEW_VERSION_METADATA")
+          UPDATED_METADATA=$(jq --arg date "$(date +%Y-%m-%d)" 'del(.pids) | .publication_date = $date' <<< "$NEW_VERSION_METADATA")
           curl -i -X PUT -H "Content-Type: application/json" https://sandbox.zenodo.org/api/deposit/depositions/$NEW_VERSION_ID?access_token=$ZENODO_TOKEN -d "{\"metadata\":$UPDATED_METADATA}"
           echo "Updated metadata with today's date"
 
