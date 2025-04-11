@@ -26,7 +26,7 @@ jobs:
         run: |
           set -e
           
-          LATEST_VERSION_ID=$(curl -s https://sandbox.zenodo.org/api/records/$CONCEPT_ID?access_token=$ZENODO_TOKEN | jq -r '.id')
+          LATEST_VERSION_ID=$(curl -sL https://sandbox.zenodo.org/api/records/$CONCEPT_ID?access_token=$ZENODO_TOKEN | jq -r '.id')
           echo "Latest version ID: $LATEST_VERSION_ID"
           
           NEW_VERSION_RESPONSE=$(curl -s -X POST https://sandbox.zenodo.org/api/deposit/depositions/$LATEST_VERSION_ID/actions/newversion?access_token=$ZENODO_TOKEN)
