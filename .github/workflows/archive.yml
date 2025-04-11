@@ -1,0 +1,45 @@
+name: Archive Site to Zenodo
+
+on:
+  push:
+    branches: ["master"]
+
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      HUGO_VERSION: 0.145.0
+      ZENODO_TOKEN: ${{ secrets.ZENODO_TOKEN }}
+      CONCEPT_ID: 197506
+    steps:
+      - name: Install Hugo CLI
+        run: wget -O hugo.deb https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_extended_${HUGO_VERSION}_linux-amd64.deb && sudo dpkg -i hugo.deb
+      - name: Checkout
+        uses: actions/checkout@v4.2.2
+      - name: Build with Hugo
+        run: hugo --minify
+      - name: Zip the website
+        run: zip -r site.zip public
+      - name: Create new version on Zenodo
+        run: |
+          set -e
+          
+          LATEST_VERSION_ID=$(curl -s https://sandbox.zenodo.org/api/records/$CONCEPT_ID?access_token=$ZENODO_TOKEN | jq -r '.id')
+          echo "Latest version ID: $LATEST_VERSION_ID"
+          
+          NEW_VERSION_RESPONSE=$(curl -s -X POST https://sandbox.zenodo.org/api/deposit/depositions/$LATEST_VERSION_ID/actions/newversion?access_token=$ZENODO_TOKEN)
+          
+          NEW_VERSION_ID=$(echo "$NEW_VERSION_RESPONSE" | jq -r '.id')
+          SITE_ZIP_LINK=$(echo "$NEW_VERSION_RESPONSE" | jq -r '.files[] | select(.filename == "site.zip") | .links.self')
+          echo "New version ID: $NEW_VERSION_ID"
+          
+          curl -i -X DELETE "$SITE_ZIP_LINK?access_token=$ZENODO_TOKEN"
+          echo "Deleted old site.zip and uploading new file"
+          
+          curl -i https://sandbox.zenodo.org/api/deposit/depositions/$NEW_VERSION_ID/files?access_token=$ZENODO_TOKEN -F file=site.zip
+          echo "Uploaded new site.zip"
+          
+          curl -i -X POST https://sandbox.zenodo.org/api/deposit/depositions/$NEW_VERSION_ID/actions/publish?access_token=$ZENODO_TOKEN
+          echo "Published new version"
