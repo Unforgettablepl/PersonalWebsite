@@ -8,4 +8,4 @@ You can reach out to me on [samikgoyal@gmail.com](mailto:samikgoyal@gmail.com) o
 
 ## Archival
 
-I love archiving and it would be a shame if this website wasn't archived somewhere. While I have no plans to make the source code public, the raw html/css/js is permanantly archived at.
+I love archiving and it would be a shame if this website wasn't archived somewhere. While I have no plans to make the source code public, the raw html/css/js is permanantly archived at .

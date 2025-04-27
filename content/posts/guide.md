@@ -3,10 +3,8 @@ title: "Indian Olympiads in Informatics Guide"
 description: "A short guide to ZCO, ZIO, INOI and IOITC."
 date: "2025-04-01"
 ---
-### Created by Samik Goyal and Co-authored by my personal Grammarly Priyanka Zele <3
-
+### Created by Samik Goyal and Proofread by Priyanka Zele
 ---
-
 This guide has been created by me to serve as a simple 'Getting Started' guide for people for the Indian Computing Olympiads (ZCO, ZIO, and INOI).
 
 I won't go into detail about topics which are not Indian Olympiad specific, and will instead provide external links in such cases.

@@ -11,6 +11,9 @@
 
     <link rel="canonical" href="{{ .Site.BaseURL }}{{ .Permalink }}">
     <link rel="stylesheet" href="{{ (resources.Get "css/main.css" | resources.Minify).RelPermalink }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono&display=swap" rel="stylesheet">
 </head>
 <body>
 {{partialCached "navbar.html" .}}

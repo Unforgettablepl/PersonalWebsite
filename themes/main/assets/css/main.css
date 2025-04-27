@@ -1,6 +1,6 @@
 body{
     background-color: #010B13;
-    color: white;
+    color: #f9f9f9;
     font-family: "JetBrains Mono", monospace;
 }
 
@@ -47,4 +47,11 @@ hr{
 .danger{
     background-color: #391413;
     color: #f4a6a4;
+}
+blockquote {
+    background: #242124;
+    border-left: 5px solid #f9f9f9;
+    margin: 1em 0;
+    padding: 1em;
+    font-style: italic;
 }
