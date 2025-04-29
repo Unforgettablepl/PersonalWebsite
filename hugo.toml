@@ -12,4 +12,10 @@ description = "I am an Indian IOI-2024 Silver Medallist. Explore my tutorials, t
 [markup.goldmark.renderer]
 unsafe = true
 
+[markup.goldmark.parser]
+autoHeadingID = true
+
+[markup.linkify]
+openInNewTab = true
+
 [taxonomies]
