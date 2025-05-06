@@ -25,6 +25,18 @@
     --text-colour: #f9f9f9;
     --text-colour-csv: 249,249,249;
 }
+#icon-light {
+    display: block;
+}
+.dark-mode #icon-light{
+    display: none;
+}
+:root #icon-dark{
+    display: none;
+}
+.dark-mode #icon-dark{
+    display: block;
+}
 body{
     background-color: var(--bg-colour);
     color: var(--text-colour);
@@ -122,7 +134,4 @@ li {
     height: 40px;
     width: 40px;
     margin-top: 11px;
-}
-.no-transition body {
-    transition-duration: 0s !important;
 }

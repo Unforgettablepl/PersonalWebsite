@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="no-transition">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,6 +9,11 @@
   <link rel="canonical" href="/favicon.ico">
   {{ end }}
   <link rel="canonical" href="{{ .Site.BaseURL }}">
+  <script>
+    if (localStorage.getItem('darkMode') === 'true') {
+      document.documentElement.classList.add('dark-mode');
+    }
+  </script>
   <link rel="stylesheet" href="{{ (resources.Get "css/main.css" | resources.Minify).RelPermalink }}">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
