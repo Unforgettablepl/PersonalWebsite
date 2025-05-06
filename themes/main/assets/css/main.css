@@ -1,24 +1,57 @@
-body{
-    background-color: #010B13;
-    color: #f9f9f9;
-    font-family: "JetBrains Mono", monospace;
-    font-size: large;
+@font-face {
+    font-family: "CMU Serif";
+    src: url("../fonts/cmunrm.ttf") format("truetype");
+    font-style: normal;
 }
-
+@font-face {
+    font-family: "CMU Serif";
+    src: url("../fonts/cmunti.ttf") format("truetype");
+    font-style: italic;
+}
+@font-face {
+    font-family: "CMU Serif";
+    src: url("../fonts/cmunbx.ttf") format("truetype");
+    font-weight: bold;
+}
+:root {
+    --bg-colour: #f9f9f9;
+    --mid-colour: #fae3e3;
+    --text-colour: #000000;
+    --text-colour-csv: 0,0,0;
+}
+.dark-mode {
+    --bg-colour: #010B13;
+    --mid-colour: #242124;
+    --text-colour: #f9f9f9;
+    --text-colour-csv: 249,249,249;
+}
+body{
+    background-color: var(--bg-colour);
+    color: var(--text-colour);
+    font-family: "Open Sans", sans-serif;
+    font-size: 1.2rem;
+    line-height: 1.6;
+    transition-duration: 0.5s;
+}
+article {
+    font-family: "CMU Serif", serif;
+    font-size: 1.2em;
+}
 * {
-    scrollbar-color: #242124 transparent;
+    scrollbar-color: var(--mid-colour) transparent;
+    -webkit-tap-highlight-color: transparent;
 }
 h1 {
-    font-size: xxx-large;
+    font-size: 2em;
 }
 h2 {
-    font-size: xx-large;
+    font-size: 1.8em;
 }
-p {
-    font-size: large;
+summary {
+    cursor: pointer;
 }
 a{
-    color: white;
+    color: var(--text-colour);
 }
 /*a[target="_blank"]::after {*/
 /*    content: "↗";*/
@@ -31,7 +64,9 @@ a{
 /*    top: -0.1em;*/
 /*}*/
 hr{
-    border-color: gray;
+    height: 0.1vh;
+    border:none;
+    background-color:var(--text-colour);
 }
 .post{
     text-align: justify;
@@ -42,17 +77,52 @@ hr{
     border-radius: 5px;
 }
 .warning{
+    background-color: #f8e150;
+    color: #342610;
+}
+.warning a{
+    color: #342610;
+}
+.dark-mode .warning {
     background-color: #342610;
     color: #f8e150;
 }
+.dark-mode .warning a{
+    color: #f8e150;
+}
 .danger{
+    background-color: #f4a6a4;
+    color: #391413;
+}
+.danger a{
+    color: #f4a6a4;
+}
+.dark-mode .danger {
     background-color: #391413;
     color: #f4a6a4;
 }
+.dark-mode .danger a{
+    color: #f4a6a4;
+}
 blockquote {
-    background: #242124;
-    border-left: 5px solid #f9f9f9;
+    background: var(--mid-colour);
+    border-left: 5px solid var(--text-colour);
     margin: 1em 0;
     padding: 1em;
     font-style: italic;
+}
+li {
+    margin-top: 5px;
+}
+.hidden {
+    display: none;
+}
+.theme-toggle svg {
+    fill: var(--text-colour);
+    height: 40px;
+    width: 40px;
+    margin-top: 11px;
+}
+.no-transition body {
+    transition-duration: 0s !important;
 }

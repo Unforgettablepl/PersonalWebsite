@@ -1,6 +1,7 @@
 ---
 title: "INOI Past Cutoffs"
 description: "Cutoffs from INOI 2023 to 2025."
+date: "2025-04-28"
 ---
 
 All the information has been copied from the emails sent to the participants.

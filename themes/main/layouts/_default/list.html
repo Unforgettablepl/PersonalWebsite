@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="no-transition">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,17 +13,23 @@
     <link rel="stylesheet" href="{{ (resources.Get "css/main.css" | resources.Minify).RelPermalink }}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
 </head>
 <body>
 {{partialCached "navbar.html" .}}
     <h1>All Posts</h1>
         {{ range .Pages }}
-        <div style="margin-bottom: 2rem; padding: 1.5rem; border-radius: 8px; background-color: rgba(255,255,255,0.1);">
+        <div style="margin-bottom: 2rem; padding: 1.5rem; border-radius: 8px; background-color: rgba(var(--text-colour-csv),0.1);">
             <h2 style="margin-top: 0;margin-bottom: 0;"><a href="{{ .RelPermalink }}" style="text-decoration: none;">{{ .Title }}</a></h2>
-            <div style="font-size: medium; color: #aaa; margin: 0.5rem 0;">
-                <span>{{ .Date.Format "January 2, 2006" }}</span>
-            </div>
+            {{ if .Date }}
+                <div style="font-size: medium; color: rgba(var(--text-colour-csv),0.7); margin: 0.5rem 0;">
+                {{ if eq .Section "data"}}
+                    <span>Last updated on: {{ .Date.Format "January 2, 2006" }}</span>
+                {{ else }}
+                    <span>{{ .Date.Format "January 2, 2006" }}</span>
+                {{ end }}
+                </div>
+            {{ end }}
             {{ if .Description }}
                 <p style="margin-top: 1rem;margin-bottom: 0;">{{ .Description }}</p>
             {{ else }}
