@@ -13,6 +13,7 @@
     if (localStorage.getItem('darkMode') === 'true') {
       document.documentElement.classList.add('dark-mode');
     }
+    document.documentElement.classList.add('visible');
   </script>
   <link rel="stylesheet" href="{{ (resources.Get "css/main.css" | resources.Minify).RelPermalink }}">
   <link rel="preconnect" href="https://fonts.googleapis.com">
