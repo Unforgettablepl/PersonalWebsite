@@ -18,16 +18,12 @@
     --mid-colour: #fae3e3;
     --text-colour: #000000;
     --text-colour-csv: 0,0,0;
-    visibility: hidden;
 }
 .dark-mode {
     --bg-colour: #010B13;
     --mid-colour: #242124;
     --text-colour: #f9f9f9;
     --text-colour-csv: 249,249,249;
-}
-.visible {
-    visibility: visible;
 }
 #icon-light {
     display: block;
