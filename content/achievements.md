@@ -11,7 +11,7 @@
 
 ## AI Olympiad
 
-- **INAIO 2025**: Stage 3 Qualifier (Stage 3 test yet to be conducted)
+- **INAIO 2025**: Stage 4 Training Camp Qualifier (Team Selection Test yet to be conducted)
 
 ## Other Olympiads
 
