@@ -2,6 +2,7 @@
 title: "Indian Olympiads in Informatics Guide"
 description: "A short guide to ZCO, ZIO, INOI and IOITC."
 date: "2025-04-01"
+draft: true
 ---
 ### Created by Samik Goyal and Proofread by Priyanka Zele
 ---
