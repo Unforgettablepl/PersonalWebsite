@@ -8,6 +8,7 @@
 - **INOI 2025**: Gold Medalist
 - **INOI 2024**: Silver Medalist
 - **USACO**: Gold (2024-2025)
+- **JetBrains ACTS 2025.2, Romania**: Accepted to the program
 
 ## AI Olympiad
 
