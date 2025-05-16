@@ -11,9 +11,39 @@
 
     <link rel="canonical" href="{{ .Site.BaseURL }}{{ .Permalink }}">
     <script>
+        function setGiscusTheme() {
+            const theme = document.documentElement.classList.contains('dark-mode') ? 'dark' : 'light';
+            const iframe = document.querySelector('iframe.giscus-frame');
+            if (!iframe) return;
+
+            iframe.contentWindow.postMessage({
+                giscus: {
+                    setConfig: {
+                        theme: theme
+                    }
+                }
+            }, 'https://giscus.app');
+        }
+        const script = document.createElement('script');
+        script.src = 'https://giscus.app/client.js';
+        script.setAttribute('data-repo', 'Unforgettablepl/PersonalWebsite');
+        script.setAttribute('data-repo-id', 'R_kgDOOWGgKg');
+        script.setAttribute('data-category', 'Comments for Blog');
+        script.setAttribute('data-category-id', 'DIC_kwDOOWGgKs4CqOSh');
+        script.setAttribute('data-mapping', 'title');
+        script.setAttribute('data-strict', '1');
+        script.setAttribute('data-reactions-enabled', '1');
+        script.setAttribute('data-emit-metadata', '0');
+        script.setAttribute('data-input-position', 'top');
+        script.setAttribute('data-theme', 'light');
+        script.setAttribute('data-lang', 'en');
+        script.setAttribute('crossorigin', 'anonymous');
+        script.async = true;
         if (localStorage.getItem('darkMode') === 'true') {
             document.documentElement.classList.add('dark-mode');
+            script.setAttribute('data-theme', 'dark');
         }
+        document.getElementById('giscus-container').appendChild(script);
     </script>
     <link rel="stylesheet" href="{{ (resources.Get "css/main.css" | resources.Minify).RelPermalink }}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -24,6 +54,10 @@
 {{partialCached "navbar.html" .}}
     <h1>{{ .Title }}</h1>
     <article class="post">{{ .Content }}</article>
+    <div id="giscus-container"></div>
+    <script>
+        document.getElementById('giscus-container').appendChild(script);
+    </script>
     <hr style="margin-top: 40px;">
     {{ if eq .Section "data"}}
         <p>The resources on this page have been curated by me. All original content remains the property of the respective olympiad organizations.</p>
