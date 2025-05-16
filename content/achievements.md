@@ -1,3 +1,6 @@
+---
+title: "Achievements"
+---
 # Olympiad Achievements
 
 ## Informatics Olympiad
