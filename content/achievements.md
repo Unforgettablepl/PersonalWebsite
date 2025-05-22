@@ -1,6 +1,7 @@
 ---
 title: "Achievements"
 ---
+---
 # Olympiad Achievements
 
 ## Informatics Olympiad
@@ -31,7 +32,7 @@ I have also participated in the Linguistics Olympiad, but I do not have any sign
 ## Research Programs
 
 - **RSI-INDIA 2025**: Selected for the program at IISc, Bangalore.
-- **Non-Trivial Research Foundations Program, Spring 2025**: Completed the program, and gave the interview for the research fellowship program (Results yet to be announced)
+- **Non-Trivial Research Foundations Program, Spring 2025**: Completed the program, and gave the interview for the research fellowship program
 
 ---
 

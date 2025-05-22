@@ -3,7 +3,7 @@ title: "What is the Indian Computing Olympiad?"
 description: "A brand new post."
 date: 2025-05-03
 ---
-### Author: Samik Goyal and his bbg Priyanka Zele
+### Author: Samik Goyal
 
 ---
 
