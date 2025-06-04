@@ -16,7 +16,8 @@ title: "Achievements"
 
 ## AI Olympiad
 
-- **INAIO 2025**: Stage 4 Training Camp Qualifier (Team Selection Test yet to be conducted)
+- **INAIO 2025**: Selected for the **first** Indian Team (Rank 1 in team selection test)
+- **IOAI 2025**: _Yet to be conducted_
 
 ## Other Olympiads
 
