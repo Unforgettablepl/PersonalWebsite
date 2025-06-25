@@ -7,7 +7,7 @@ title: "Achievements"
 ## Informatics Olympiad
 
 - **IOI 2024 (Alexandria, Egypt)**: Silver Medalist
-- **IOITC 2025**: Selected for the Indian Team
+- **IOITC 2025**: Selected for the Indian Team (Rank 1 in team selection test)
 - **IOITC 2024**: Selected for the Indian Team
 - **INOI 2025**: Gold Medalist
 - **INOI 2024**: Silver Medalist
@@ -54,6 +54,7 @@ I am one of the founders of the Shortest Path to IOI (SPOI) Mentorship Program (
 
 - **SAT December 2024**: 1600/1600 ;)
 - **CBSE Class 10 Boards**: 100/100 in Maths, 94/100 in Science, and 95/100 in English.
+- **Infosys Award**: Received a cash prize of ₹15,000 at the Homi Bhabha Center for Science Education (HBCSE), funded by the TIFR endowment, for winning a medal at IOI 2024.
 
 ## Sports Achievements
 
