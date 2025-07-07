@@ -53,6 +53,7 @@ I am one of the founders of the Shortest Path to IOI (SPOI) Mentorship Program (
 ## Academic Achievements
 
 - **SAT December 2024**: 1600/1600 ;)
+- **AP Calculus BC, 2025**: 5/5, with an Calculus AB subscore of 5 
 - **CBSE Class 10 Boards**: 100/100 in Maths, 94/100 in Science, and 95/100 in English.
 - **Infosys Award**: Received a cash prize of ₹15,000 at the Homi Bhabha Center for Science Education (HBCSE), funded by the TIFR endowment, for winning a medal at IOI 2024.
 
