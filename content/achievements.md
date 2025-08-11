@@ -7,6 +7,7 @@ title: "Achievements"
 ## Informatics Olympiad
 
 - **IOI 2024 (Alexandria, Egypt)**: Silver Medalist
+- **IOI 2025 (Sucre, Bolivia)**: Silver Medalist
 - **IOITC 2025**: Selected for the Indian Team (Rank 1 in team selection test)
 - **IOITC 2024**: Selected for the Indian Team
 - **INOI 2025**: Gold Medalist
@@ -16,6 +17,7 @@ title: "Achievements"
 
 ## AI Olympiad
 
+- **IOAI 2025 (Beijing, China)**: Silver Medalist
 - **INAIO 2025**: Selected for the **first** Indian Team (Rank 1 in team selection test)
 
 ## Other Olympiads
