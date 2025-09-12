@@ -30,6 +30,7 @@ I have also participated in the Linguistics Olympiad, but I do not have any sign
 
 ## Research Papers
 - **MM-LDTF**: Multi-Model Legal Document Translation Framework for Vernacular Languages, _Preprint at [doi:10.31219/osf.io/3nafz](https://doi.org/10.31219/osf.io/3nafz)_.
+- Paper under review _(Details withheld)_.
 
 ## Research Programs
 
@@ -46,7 +47,7 @@ I am the founder of [Sadhya](https://sadhya.org.in), a non-profit organization t
 
 ## SPOI
 
-I am one of the founders of the Shortest Path to IOI (SPOI) Mentorship Program ([website](https://spoi.org.in), [announcement](https://codeforces.com/blog/entry/132041)). We provide free training for the Indian Informatics Olympiads, and have a big community with over 300 members. It is the only program in India of its kind.
+I am one of the founders of the Shortest Path to IOI (SPOI) Mentorship Program ([website](https://spoi.org.in), [announcement](https://codeforces.com/blog/entry/132041)). I have also raised **USD 11,500** for this. We provide free training for the Indian Informatics Olympiads, and have a big community with over 300 members. It is the only program in India of its kind.
 
 ---
 
@@ -67,6 +68,7 @@ I love cycling and running, and my best records are 40 Kilometer in 2 Hours for 
 
 - **IIT Delhi's ICPC-de-Tryst 2024**: Secured the 16th rank along with my team
 - **MEGA Hackathon 2024**: Won the Gaming Award along with my team, and was awarded a cash prize of 100 USD
+- **IELTS UKVI ACADEMIC**: I got 8.5 band with the lowest score in Speaking with 7.5 band
 - **National Cadet Corps**: Was a part of the air wing of the NCC
 - **Codeforces**: Rated 2096 (Profile: [unforgettablepl](https://codeforces.com/profile/unforgettablepl), last contest on 15 July 2024)
 - **Codeforces Tester**: Tested a Div 2 round on Codeforces ([Round 1023](https://codeforces.com/blog/entry/142548))
