@@ -1,6 +1,6 @@
-baseURL = 'https://example.org/'
+baseURL = 'https://samikgoyal.com'
 languageCode = 'en-us'
-url = "https://myawesomewebsite.com"
+url = "https://samikgoyal.com"
 title = "Samik Goyal"
 theme = "main"
 buildFuture = true
