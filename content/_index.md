@@ -8,4 +8,4 @@ You can reach out to me on [samikgoyal@gmail.com](mailto:samikgoyal@gmail.com), 
 
 ## Archival
 
-I love archiving, and it would be a shame if this website wasn't archived somewhere. The source code is available [here](https://github.com/Unforgettablepl/PersonalWebsite), and the rendered html/css/js is archived permanently at [doi:]().
+I love archiving, and it would be a shame if this website wasn't archived somewhere. The source code is available [here](https://github.com/Unforgettablepl/PersonalWebsite), and the rendered html/css/js is archived permanently at _[doi:10.5281/zenodo.17120132](https://doi.org/10.5281/zenodo.17120132)_.

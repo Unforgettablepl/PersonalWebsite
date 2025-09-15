@@ -12,7 +12,7 @@ jobs:
     env:
       HUGO_VERSION: 0.145.0
       ZENODO_TOKEN: ${{ secrets.ZENODO_TOKEN }}
-      CONCEPT_ID: 197506
+      CONCEPT_ID: 17120133
     steps:
       - name: Install Hugo CLI
         run: wget -O hugo.deb https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_extended_${HUGO_VERSION}_linux-amd64.deb && sudo dpkg -i hugo.deb
@@ -26,10 +26,10 @@ jobs:
         run: |
           set -e
           
-          LATEST_VERSION_ID=$(curl -L https://sandbox.zenodo.org/api/records/$CONCEPT_ID?access_token=$ZENODO_TOKEN | jq -r '.id')
+          LATEST_VERSION_ID=$(curl -L https://zenodo.org/api/records/$CONCEPT_ID?access_token=$ZENODO_TOKEN | jq -r '.id')
           echo "Latest version ID: $LATEST_VERSION_ID"
           
-          NEW_VERSION_RESPONSE=$(curl -X POST https://sandbox.zenodo.org/api/deposit/depositions/$LATEST_VERSION_ID/actions/newversion?access_token=$ZENODO_TOKEN)
+          NEW_VERSION_RESPONSE=$(curl -X POST https://zenodo.org/api/deposit/depositions/$LATEST_VERSION_ID/actions/newversion?access_token=$ZENODO_TOKEN)
           
           NEW_VERSION_ID=$(echo "$NEW_VERSION_RESPONSE" | jq -r '.id')
           SITE_ZIP_LINK=$(echo "$NEW_VERSION_RESPONSE" | jq -r '.files[] | select(.filename == "site.zip") | .links.self')
@@ -39,12 +39,12 @@ jobs:
           curl -i -X DELETE "$SITE_ZIP_LINK?access_token=$ZENODO_TOKEN"
           echo "Deleted old site.zip and uploading new file"
           
-          curl -i https://sandbox.zenodo.org/api/deposit/depositions/$NEW_VERSION_ID/files?access_token=$ZENODO_TOKEN -F file=@site.zip
+          curl -i https://zenodo.org/api/deposit/depositions/$NEW_VERSION_ID/files?access_token=$ZENODO_TOKEN -F file=@site.zip
           echo "Uploaded new site.zip"
 
           UPDATED_METADATA=$(jq --arg date "$(date +%Y-%m-%d)" 'del(.pids) | .publication_date = $date' <<< "$NEW_VERSION_METADATA")
-          curl -i -X PUT -H "Content-Type: application/json" https://sandbox.zenodo.org/api/deposit/depositions/$NEW_VERSION_ID?access_token=$ZENODO_TOKEN -d "{\"metadata\":$UPDATED_METADATA}"
+          curl -i -X PUT -H "Content-Type: application/json" https://zenodo.org/api/deposit/depositions/$NEW_VERSION_ID?access_token=$ZENODO_TOKEN -d "{\"metadata\":$UPDATED_METADATA}"
           echo "Updated metadata with today's date"
 
-          curl -i -X POST https://sandbox.zenodo.org/api/deposit/depositions/$NEW_VERSION_ID/actions/publish?access_token=$ZENODO_TOKEN
+          curl -i -X POST https://zenodo.org/api/deposit/depositions/$NEW_VERSION_ID/actions/publish?access_token=$ZENODO_TOKEN
           echo "Published new version"
