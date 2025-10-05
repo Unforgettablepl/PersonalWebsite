@@ -135,3 +135,10 @@ li {
     width: 40px;
     margin-top: 11px;
 }
+
+code {
+  font-family: monospace;
+  background: var(--mid-colour);
+  padding: 2px 4px;
+  border-radius: 3px;
+}
