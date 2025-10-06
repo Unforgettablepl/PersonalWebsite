@@ -51,7 +51,7 @@
 </head>
 <body>
 {{partialCached "navbar.html" .}}
-    <h1>{{ .Title }}</h1>
+    <h1 style="font-size:2.3em;margin-bottom: 0;">{{ .Title }}</h1>
     <article class="post">{{ .Content }}</article>
     <div id="giscus-container"></div>
     {{ if or (eq .Section "posts") (eq .Section "data") }}

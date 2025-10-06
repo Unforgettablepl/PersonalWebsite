@@ -28,6 +28,13 @@ Opens GDB in a split-screen interface showing source code alongside the command 
 `q`\
 :)
 
+### **Standard Input/Output**
+
+While you can use `stdin` and `stdout` inside gdb, it messes up the user interface. Prefer using **file input**. Output usually does not matter much.
+
+`refresh`\
+This refreshes the interface and will take it back to normal after `stdin` or `stdout` is used.
+
 ---
 
 ## Run and Control Execution

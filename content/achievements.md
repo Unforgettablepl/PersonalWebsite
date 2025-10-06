@@ -2,9 +2,9 @@
 title: "Achievements"
 ---
 ---
-# Olympiad Achievements
+## Olympiad Achievements
 
-## Informatics Olympiad
+### Informatics Olympiad
 
 - **IOI 2024 (Alexandria, Egypt)**: Silver Medalist
 - **IOI 2025 (Sucre, Bolivia)**: Silver Medalist
@@ -15,56 +15,56 @@ title: "Achievements"
 - **USACO**: Gold (2024-2025)
 - **JetBrains ACTS 2025.2, Romania**: Accepted to the program
 
-## AI Olympiad
+### AI Olympiad
 
 - **IOAI 2025 (Beijing, China)**: Silver Medalist
 - **INAIO 2025**: Selected for the **first** Indian Team (Rank 1 in team selection test)
 
-## Other Olympiads
+### Other Olympiads
 
 I have also participated in the Linguistics Olympiad, but I do not have any significant achievements in it.
 
 ---
 
-# Research Achievements
+## Research Achievements
 
-## Research Papers
+### Research Papers
 - **MM-LDTF**: Multi-Model Legal Document Translation Framework for Vernacular Languages, _Preprint at [doi:10.31219/osf.io/3nafz](https://doi.org/10.31219/osf.io/3nafz)_.
 - **<span style="font-variant: small-caps;">SubtaskEval</span>**: Benchmarking LLMs on Competitive Programming Subtasks, accepted at the _Deep Learning for Code (DL4C) Workshop, NeurIPS 2025_.
 
-## Research Programs
+### Research Programs
 
 - **RSI-INDIA 2025**: Selected for the program at IISc, Bangalore.
 - **Non-Trivial Research Foundations Program, Spring 2025**: Completed the program, and gave the interview for the research fellowship program
 
 ---
 
-# Initiatives
+## Initiatives
 
-## Sadhya
+### Sadhya
 
 I am the founder of [Sadhya](https://sadhya.org.in), a non-profit organization that aims to provide free education to underprivileged children in India. We focus on providing quality educational resources to children who do not have access to them.
 
-## SPOI
+### SPOI
 
 I am one of the founders of the Shortest Path to IOI (SPOI) Mentorship Program ([website](https://spoi.org.in), [announcement](https://codeforces.com/blog/entry/132041)). I have also raised **USD 11,500** for this. We provide free training for the Indian Informatics Olympiads, and have a big community with over 300 members. It is the only program in India of its kind.
 
 ---
 
-# Other Achievements
+## Other Achievements
 
-## Academic Achievements
+### Academic Achievements
 
 - **SAT December 2024**: 1600/1600 ;)
 - **AP Calculus BC, 2025**: 5/5, with an Calculus AB subscore of 5 
 - **CBSE Class 10 Boards**: 100/100 in Maths, 94/100 in Science, and 95/100 in English.
 - **Infosys Award**: Received a cash prize of ₹15,000 at the Homi Bhabha Center for Science Education (HBCSE), funded by the TIFR endowment, for winning a medal at IOI 2024.
 
-## Sports Achievements
+### Sports Achievements
 
 I love cycling and running, and my best records are 40 Kilometer in 2 Hours for cycling and 16 Kilometer in 2 Hours for running. I have not participated in any formal events.
 
-## Others
+### Others
 
 - **IIT Delhi's ICPC-de-Tryst 2024**: Secured the 16th rank along with my team
 - **MEGA Hackathon 2024**: Won the Gaming Award along with my team, and was awarded a cash prize of 100 USD
