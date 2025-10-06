@@ -3,8 +3,9 @@ title: "INOI Past Cutoffs"
 description: "Cutoffs from INOI 2023 to 2025."
 date: "2025-04-28"
 ---
-
 All the information has been copied from the emails sent to the participants.
+
+---
 
 ## INOI 2023
 
@@ -24,6 +25,7 @@ Class IX and below: 79 points</br>
 Female: 40 points (for all classes)
 </blockquote>
 
+---
 ## INOI 2024
 
 <blockquote>
@@ -47,6 +49,7 @@ Female students : 71/300 and above
 Female students with scores 53/300 and above will be eligible for the tests to select the Indian team for EGOI.  The EGOI Team Selection Tests will be conducted before the IOI Training Camp. The four members who are selected for the EGOI team will also qualify for the IOI Training Camp, in case they are not already included in the cutoffs above.
 </blockquote>
 
+---
 ## INOI 2025
 
 <blockquote>
