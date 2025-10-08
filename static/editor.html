@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Simple Markdown Editor (Light)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz@8..60&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      color-scheme: only light;
+      --bg: #ffffff;
+      --text: #111111;
+      --border: #e5e7eb;
+      --link: #0b5fff;
+      --code-bg: #f6f8fa;
+    }
+    * { box-sizing: border-box; }
+    html, body { height: 100%; margin: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: "Source Serif 4", serif;
+    }
+
+    .app { display: flex; height: 100vh; width: 100vw; overflow: hidden; }
+    .pane { width: 50%; display: flex; flex-direction: column; overflow: hidden; border-left: 1px solid var(--border); }
+    .pane:first-child { border-left: none; }
+
+    .header { font-size: 12px; letter-spacing: 0.04em; color: #666; margin: 8px 16px; text-transform: uppercase; }
+
+    /* Single text input element */
+    textarea#editor {
+      flex: 1; width: 100%; resize: none; border: none; padding: 16px;
+      background: var(--bg); color: var(--text); outline: none;
+      font: 20px/1.5 "Source Serif 4", serif;
+    }
+
+    .preview-content { flex: 1; overflow-y: auto; padding: 16px; background: var(--bg); }
+    /* Remove smooth scroll to ensure truly live syncing */
+    /* .preview-content, #editor { scroll-behavior: auto; } */
+  </style>
+</head>
+<body>
+  <div class="app">
+    <section class="pane">
+      <div class="header">Editor</div>
+      <textarea id="editor" spellcheck="true"></textarea>
+    </section>
+
+    <section class="pane">
+      <div class="header">Preview</div>
+      <article id="preview" class="preview-content"></article>
+    </section>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script>
+    const editor = document.getElementById('editor');
+    const preview = document.getElementById('preview');
+
+    marked.setOptions({ gfm: true, breaks: true });
+
+    function render() {
+      preview.innerHTML = marked.parse(editor.value);
+      // keep alignment after (re)render
+      syncOnce();
+    }
+
+    // --- Live scroll sync (requestAnimationFrame loop) ---
+    let scrollRAF = null;
+    let lastScrollMark = 0;
+
+    function syncOnce() {
+      const eMax = editor.scrollHeight - editor.clientHeight;
+      const pMax = preview.scrollHeight - preview.clientHeight;
+      if (eMax <= 0 || pMax <= 0) return;
+      const ratio = editor.scrollTop / (eMax || 1);
+      preview.scrollTop = ratio * pMax;
+    }
+
+    function startSyncLoop() {
+      lastScrollMark = performance.now();
+      if (scrollRAF !== null) return; // already running
+      const loop = () => {
+        syncOnce();
+        if (performance.now() - lastScrollMark < 120) {
+          scrollRAF = requestAnimationFrame(loop);
+        } else {
+          cancelAnimationFrame(scrollRAF);
+          scrollRAF = null;
+        }
+      };
+      scrollRAF = requestAnimationFrame(loop);
+    }
+
+    // Mark activity and ensure loop continues during active scroll
+    function markScrolling() {
+      lastScrollMark = performance.now();
+    }
+
+    // Listen to all relevant events to make it feel instantaneous
+    editor.addEventListener('scroll', () => { markScrolling(); startSyncLoop(); }, { passive: true });
+    editor.addEventListener('wheel',   () => { markScrolling(); startSyncLoop(); }, { passive: true });
+    editor.addEventListener('touchmove', () => { markScrolling(); startSyncLoop(); }, { passive: true });
+    editor.addEventListener('keydown', () => { markScrolling(); startSyncLoop(); }); // PgUp/PgDn/Home/End/Arrows
+
+    // Update preview content as you type (debounced to next frame)
+    let inputPending = false;
+    editor.addEventListener('input', () => {
+      if (inputPending) return;
+      inputPending = true;
+      requestAnimationFrame(() => { inputPending = false; render(); });
+    });
+
+    // Initial render
+    render();
+
+    // Optional: persist content
+    (function persist(){
+      const KEY = 'simple-md-editor-content';
+      try {
+        const saved = localStorage.getItem(KEY);
+        if (saved !== null) { editor.value = saved; render(); }
+        editor.addEventListener('input', () => localStorage.setItem(KEY, editor.value));
+      } catch (_) {}
+    })();
+  </script>
+</body>
+</html>
