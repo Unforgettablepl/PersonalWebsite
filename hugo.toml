@@ -18,4 +18,7 @@ autoHeadingID = true
 [markup.linkify]
 openInNewTab = true
 
+[services.googleTagManager]
+id = 'GTM-PFPZ24J9'
+
 [taxonomies]
