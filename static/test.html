@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>LAN Touch P2P (QR WebRTC)</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    :root {
+      color-scheme: dark;
+    }
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: #111;
+      color: #eee;
+    }
+    #topBar {
+      padding: 8px 12px;
+      background: #222;
+      border-bottom: 1px solid #333;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    select, button, textarea {
+      font: inherit;
+    }
+    button {
+      padding: 6px 12px;
+      border-radius: 4px;
+      border: 1px solid #444;
+      background: #333;
+      color: #eee;
+      cursor: pointer;
+    }
+    button:disabled {
+      opacity: 0.4;
+      cursor: default;
+    }
+    main {
+      padding: 10px;
+    }
+    section {
+      margin-bottom: 20px;
+      border: 1px solid #333;
+      border-radius: 8px;
+      padding: 10px;
+      background: #181818;
+    }
+    h2, h3 {
+      margin-top: 0;
+    }
+    .row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .col {
+      flex: 1 1 200px;
+      min-width: 0;
+    }
+    textarea {
+      width: 100%;
+      box-sizing: border-box;
+      background: #111;
+      border-radius: 4px;
+      border: 1px solid #444;
+      color: #eee;
+      padding: 6px;
+      resize: vertical;
+      min-height: 80px;
+    }
+    .qr-box {
+      width: 256px;
+      height: 256px;
+      background: #000;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    video {
+      max-width: 100%;
+      border-radius: 8px;
+      background: #000;
+    }
+    #touchArea {
+      margin-top: 10px;
+      width: 100%;
+      height: 45vh;
+      background: #222;
+      border-radius: 8px;
+      border: 1px solid #444;
+      touch-action: none; /* capture all touches */
+    }
+    #displayCanvas {
+      margin-top: 10px;
+      width: 100%;
+      height: 45vh;
+      background: #000;
+      border-radius: 8px;
+      border: 1px solid #444;
+    }
+    .hint {
+      font-size: 0.85rem;
+      color: #aaa;
+    }
+  </style>
+</head>
+<body>
+  <div id="topBar">
+    Role:
+    <select id="roleSelect">
+      <option value="receiver">Receiver</option>
+      <option value="sender">Sender (Broadcaster)</option>
+    </select>
+    <span id="status" style="margin-left:auto;font-size:0.9rem;color:#8f8;">
+      Idle
+    </span>
+  </div>
+
+  <main>
+    <!-- Receiver UI -->
+    <section id="receiverUI">
+      <h2>Receiver</h2>
+      <p class="hint">
+        Step 1: Click “Start Receiver” to create an offer. This will show a QR code.
+        Sender will scan that QR.<br>
+        Step 2: After sender shows an answer QR, click “Scan Answer QR” to complete the connection.
+      </p>
+
+      <button id="startReceiverBtn">Start Receiver (create offer)</button>
+
+      <div class="row" style="margin-top:10px;">
+        <div class="col">
+          <h3>Offer QR (give to Sender)</h3>
+          <div id="receiverOfferQR" class="qr-box"></div>
+          <p class="hint">If QR is annoying, you can manually copy this blob:</p>
+          <textarea id="receiverOfferText" readonly></textarea>
+        </div>
+        <div class="col">
+          <h3>Answer from Sender</h3>
+          <button id="receiverScanAnswerBtn">Scan Answer QR</button>
+          <div style="margin-top:8px;">
+            <video id="receiverVideo" autoplay playsinline muted></video>
+            <canvas id="receiverCanvas" style="display:none;"></canvas>
+          </div>
+          <p class="hint">Or paste the answer blob here if you’re not using QR:</p>
+          <textarea id="receiverAnswerText"></textarea>
+          <button id="receiverApplyAnswerBtn" style="margin-top:6px;">Apply Pasted Answer</button>
+        </div>
+      </div>
+
+      <h3 style="margin-top:16px;">Live View</h3>
+      <canvas id="displayCanvas"></canvas>
+    </section>
+
+    <!-- Sender UI -->
+    <section id="senderUI" style="display:none;">
+      <h2>Sender (Broadcaster)</h2>
+      <p class="hint">
+        Step 1: Click “Scan Offer QR” and point the camera to the receiver’s QR.<br>
+        Step 2: This will generate an answer QR. Show it to the receiver to scan.
+      </p>
+
+      <div class="row">
+        <div class="col">
+          <h3>Scan Receiver Offer</h3>
+          <button id="senderScanOfferBtn">Scan Offer QR</button>
+          <div style="margin-top:8px;">
+            <video id="senderVideo" autoplay playsinline muted></video>
+            <canvas id="senderCanvas" style="display:none;"></canvas>
+          </div>
+          <p class="hint">Decoded offer blob:</p>
+          <textarea id="senderOfferText" readonly></textarea>
+        </div>
+        <div class="col">
+          <h3>Answer QR (for Receiver)</h3>
+          <div id="senderAnswerQR" class="qr-box"></div>
+          <p class="hint">Blob form (optional copy/paste):</p>
+          <textarea id="senderAnswerText" readonly></textarea>
+        </div>
+      </div>
+
+      <h3 style="margin-top:16px;">Touch Area (send to Receiver)</h3>
+      <div id="touchArea"></div>
+      <p class="hint">
+        Use your finger on this area. When the DataChannel is open, touches stream to the receiver.
+      </p>
+    </section>
+  </main>
+
+  <!-- QR code generator -->
+  <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+  <!-- QR code scanner -->
+  <script src="https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.js"></script>
+
+  <script>
+    // --- Global WebRTC state ---
+    let pc = null;
+    let dc = null;
+    let currentRole = null; // 'receiver' or 'sender'
+
+    const statusEl = document.getElementById('status');
+
+    function setStatus(text, color='#8f8') {
+      statusEl.textContent = text;
+      statusEl.style.color = color;
+    }
+
+    function encodeSignal(desc) {
+      return btoa(JSON.stringify(desc));
+    }
+    function decodeSignal(blob) {
+      return JSON.parse(atob(blob.trim()));
+    }
+
+    // Simple QR helper: clear container before drawing new code
+    function makeQRCode(container, text) {
+      container.innerHTML = "";
+      if (!text) return;
+      new QRCode(container, {
+        text: text,
+        width: 256,
+        height: 256
+      });
+    }
+
+    // --- Role selection UI ---
+    const roleSelect = document.getElementById('roleSelect');
+    const receiverUI = document.getElementById('receiverUI');
+    const senderUI = document.getElementById('senderUI');
+
+    roleSelect.addEventListener('change', () => {
+      const value = roleSelect.value;
+      if (value === 'receiver') {
+        receiverUI.style.display = '';
+        senderUI.style.display = 'none';
+      } else {
+        receiverUI.style.display = 'none';
+        senderUI.style.display = '';
+      }
+      // NOTE: We don't auto-reset WebRTC state; reload page if you want a clean state.
+    });
+    // Initialize default
+    roleSelect.dispatchEvent(new Event('change'));
+
+    // --- Receiver UI elements ---
+    const startReceiverBtn = document.getElementById('startReceiverBtn');
+    const receiverOfferQR = document.getElementById('receiverOfferQR');
+    const receiverOfferText = document.getElementById('receiverOfferText');
+    const receiverScanAnswerBtn = document.getElementById('receiverScanAnswerBtn');
+    const receiverApplyAnswerBtn = document.getElementById('receiverApplyAnswerBtn');
+    const receiverAnswerText = document.getElementById('receiverAnswerText');
+    const receiverVideo = document.getElementById('receiverVideo');
+    const receiverCanvas = document.getElementById('receiverCanvas');
+
+    // --- Sender UI elements ---
+    const senderScanOfferBtn = document.getElementById('senderScanOfferBtn');
+    const senderOfferText = document.getElementById('senderOfferText');
+    const senderAnswerQR = document.getElementById('senderAnswerQR');
+    const senderAnswerText = document.getElementById('senderAnswerText');
+    const senderVideo = document.getElementById('senderVideo');
+    const senderCanvas = document.getElementById('senderCanvas');
+
+    // Drawing / touch elements
+    const displayCanvas = document.getElementById('displayCanvas');
+    const displayCtx = displayCanvas.getContext('2d');
+    const touchArea = document.getElementById('touchArea');
+
+    function resizeDisplayCanvas() {
+      displayCanvas.width = displayCanvas.clientWidth;
+      displayCanvas.height = displayCanvas.clientHeight;
+    }
+    window.addEventListener('resize', resizeDisplayCanvas);
+    resizeDisplayCanvas();
+
+    // --- WebRTC setup ---
+    function createPeer(role) {
+      currentRole = role;
+      pc = new RTCPeerConnection({ iceServers: [] }); // pure LAN: no STUN/TURN
+
+      pc.onicecandidate = (e) => {
+        // When e.candidate is null, ICE gathering is complete
+        if (!e.candidate && pc.localDescription) {
+          const blob = encodeSignal(pc.localDescription);
+          const type = pc.localDescription.type;
+
+          if (currentRole === 'receiver' && type === 'offer') {
+            receiverOfferText.value = blob;
+            makeQRCode(receiverOfferQR, blob);
+            setStatus('Receiver offer ready (QR shown)');
+          } else if (currentRole === 'receiver' && type === 'answer') {
+            receiverAnswerText.value = blob;
+            // If we ever want receiver to generate an answer, we could QR it here
+          } else if (currentRole === 'sender' && type === 'answer') {
+            senderAnswerText.value = blob;
+            makeQRCode(senderAnswerQR, blob);
+            setStatus('Sender answer ready (QR shown)');
+          } else if (currentRole === 'sender' && type === 'offer') {
+            senderOfferText.value = blob;
+          }
+        }
+      };
+
+      if (role === 'receiver') {
+        // Receiver creates DataChannel + offer
+        dc = pc.createDataChannel('touch');
+        setupDataChannel();
+      } else {
+        // Sender waits for DataChannel from remote
+        pc.ondatachannel = (ev) => {
+          dc = ev.channel;
+          setupDataChannel();
+        };
+      }
+
+      pc.onconnectionstatechange = () => {
+        console.log('Connection state:', pc.connectionState);
+        if (pc.connectionState === 'connected') {
+          setStatus('Connected (DataChannel should be open)', '#0f0');
+        } else if (pc.connectionState === 'failed' || pc.connectionState === 'disconnected') {
+          setStatus('Connection ' + pc.connectionState, '#f88');
+        }
+      };
+    }
+
+    function setupDataChannel() {
+      if (!dc) return;
+      dc.onopen = () => {
+        console.log('DataChannel open');
+        setStatus('DataChannel open', '#0f0');
+      };
+      dc.onclose = () => {
+        console.log('DataChannel closed');
+        setStatus('DataChannel closed', '#f88');
+      };
+      dc.onerror = (err) => {
+        console.error('DataChannel error', err);
+        setStatus('DataChannel error', '#f88');
+      };
+
+      if (currentRole === 'receiver') {
+        dc.onmessage = (ev) => {
+          handleTouchMessage(ev.data);
+        };
+      } else {
+        // Sender could receive things too, but we ignore for now
+        dc.onmessage = (ev) => {
+          console.log('Received on sender (ignored):', ev.data);
+        };
+      }
+    }
+
+    // --- Receiver: start + offer creation ---
+    startReceiverBtn.addEventListener('click', async () => {
+      if (pc) {
+        alert('Receiver already started. Reload page to reset.');
+        return;
+      }
+      try {
+        setStatus('Creating receiver offer...');
+        createPeer('receiver');
+        const offer = await pc.createOffer();
+        await pc.setLocalDescription(offer);
+        // onicecandidate will produce blob+QR
+      } catch (err) {
+        console.error(err);
+        setStatus('Error creating offer', '#f88');
+      }
+    });
+
+    // --- Receiver: apply answer (manual paste) ---
+    receiverApplyAnswerBtn.addEventListener('click', async () => {
+      if (!pc) {
+        alert('Start receiver first.');
+        return;
+      }
+      try {
+        const blob = receiverAnswerText.value.trim();
+        if (!blob) {
+          alert('No answer blob provided.');
+          return;
+        }
+        const remoteDesc = decodeSignal(blob);
+        await pc.setRemoteDescription(remoteDesc);
+        setStatus('Receiver applied answer (waiting for connection...)');
+      } catch (err) {
+        console.error(err);
+        setStatus('Error applying answer', '#f88');
+      }
+    });
+
+    // --- Touch handling on Sender ---
+    function sendTouch(type, touch) {
+      if (!dc || dc.readyState !== 'open') return;
+      const rect = touchArea.getBoundingClientRect();
+      const x = (touch.clientX - rect.left) / rect.width;
+      const y = (touch.clientY - rect.top) / rect.height;
+
+      const msg = {
+        type,
+        id: touch.identifier ?? 0,
+        x,
+        y,
+        t: Date.now(),
+      };
+      dc.send(JSON.stringify(msg));
+    }
+
+    touchArea.addEventListener('touchstart', (e) => {
+      if (currentRole !== 'sender') return;
+      for (const t of e.changedTouches) sendTouch('start', t);
+    });
+
+    touchArea.addEventListener('touchmove', (e) => {
+      if (currentRole !== 'sender') return;
+      e.preventDefault();
+      for (const t of e.changedTouches) sendTouch('move', t);
+    }, { passive: false });
+
+    touchArea.addEventListener('touchend', (e) => {
+      if (currentRole !== 'sender') return;
+      for (const t of e.changedTouches) sendTouch('end', t);
+    });
+
+    touchArea.addEventListener('touchcancel', (e) => {
+      if (currentRole !== 'sender') return;
+      for (const t of e.changedTouches) sendTouch('end', t);
+    });
+
+    // Optional: mouse support for testing on non-touch devices
+    let mouseDown = false;
+    touchArea.addEventListener('mousedown', (e) => {
+      if (currentRole !== 'sender') return;
+      mouseDown = true;
+      sendTouch('start', e);
+    });
+    touchArea.addEventListener('mousemove', (e) => {
+      if (currentRole !== 'sender' || !mouseDown) return;
+      sendTouch('move', e);
+    });
+    touchArea.addEventListener('mouseup', (e) => {
+      if (currentRole !== 'sender') return;
+      mouseDown = false;
+      sendTouch('end', e);
+    });
+    touchArea.addEventListener('mouseleave', (e) => {
+      if (currentRole !== 'sender' || !mouseDown) return;
+      mouseDown = false;
+      sendTouch('end', e);
+    });
+
+    // --- Receiver: draw touches ---
+    function handleTouchMessage(data) {
+      try {
+        const msg = JSON.parse(data);
+        const x = msg.x * displayCanvas.width;
+        const y = msg.y * displayCanvas.height;
+
+        if (msg.type === 'start') {
+          displayCtx.beginPath();
+          displayCtx.moveTo(x, y);
+        } else if (msg.type === 'move') {
+          displayCtx.lineTo(x, y);
+          displayCtx.strokeStyle = '#0f0';
+          displayCtx.lineWidth = 2;
+          displayCtx.stroke();
+        } else if (msg.type === 'end') {
+          displayCtx.lineTo(x, y);
+          displayCtx.stroke();
+        }
+      } catch (err) {
+        console.error('Bad touch message', err, data);
+      }
+    }
+
+    // --- QR scanning helpers (Sender + Receiver) ---
+    let senderScanActive = false;
+    let senderStream = null;
+    async function startSenderScan() {
+      if (senderScanActive) return;
+      try {
+        senderStream = await navigator.mediaDevices.getUserMedia({
+          video: { facingMode: 'environment' }
+        });
+      } catch (err) {
+        console.error(err);
+        alert('Failed to access camera (sender).');
+        return;
+      }
+
+      senderVideo.srcObject = senderStream;
+      await senderVideo.play();
+      senderScanActive = true;
+      setStatus('Scanning receiver QR (sender)...', '#ff8');
+
+      const ctx = senderCanvas.getContext('2d');
+
+      async function scanLoop() {
+        if (!senderScanActive) return;
+        if (senderVideo.readyState === senderVideo.HAVE_ENOUGH_DATA) {
+          senderCanvas.width = senderVideo.videoWidth;
+          senderCanvas.height = senderVideo.videoHeight;
+          ctx.drawImage(senderVideo, 0, 0, senderCanvas.width, senderCanvas.height);
+          const imageData = ctx.getImageData(0, 0, senderCanvas.width, senderCanvas.height);
+          const code = jsQR(imageData.data, senderCanvas.width, senderCanvas.height);
+          if (code && code.data) {
+            senderScanActive = false;
+            stopSenderScan();
+            senderOfferText.value = code.data;
+            setStatus('Got offer from QR (sender). Creating answer...');
+            await onSenderGotOffer(code.data);
+            return;
+          }
+        }
+        requestAnimationFrame(scanLoop);
+      }
+      scanLoop();
+    }
+
+    function stopSenderScan() {
+      if (senderStream) {
+        senderStream.getTracks().forEach(t => t.stop());
+        senderStream = null;
+      }
+      setStatus('Stopped sender scan', '#aaa');
+    }
+
+    senderScanOfferBtn.addEventListener('click', () => {
+      if (pc) {
+        alert('Sender already in use. Reload page to reset.');
+        return;
+      }
+      currentRole = 'sender';
+      startSenderScan();
+    });
+
+    async function onSenderGotOffer(blob) {
+      if (!pc) {
+        createPeer('sender');
+      }
+      try {
+        const remoteDesc = decodeSignal(blob);
+        await pc.setRemoteDescription(remoteDesc);
+        const answer = await pc.createAnswer();
+        await pc.setLocalDescription(answer);
+        // onicecandidate will generate answer blob + QR
+      } catch (err) {
+        console.error(err);
+        setStatus('Error handling offer on sender', '#f88');
+      }
+    }
+
+    // Receiver scanning answer
+    let receiverScanActive = false;
+    let receiverStream = null;
+    async function startReceiverAnswerScan() {
+      if (receiverScanActive) return;
+      if (!pc) {
+        alert('Start receiver first (create offer).');
+        return;
+      }
+      try {
+        receiverStream = await navigator.mediaDevices.getUserMedia({
+          video: { facingMode: 'environment' }
+        });
+      } catch (err) {
+        console.error(err);
+        alert('Failed to access camera (receiver).');
+        return;
+      }
+
+      receiverVideo.srcObject = receiverStream;
+      await receiverVideo.play();
+      receiverScanActive = true;
+      setStatus('Scanning sender answer QR (receiver)...', '#ff8');
+
+      const ctx = receiverCanvas.getContext('2d');
+
+      async function scanLoop() {
+        if (!receiverScanActive) return;
+        if (receiverVideo.readyState === receiverVideo.HAVE_ENOUGH_DATA) {
+          receiverCanvas.width = receiverVideo.videoWidth;
+          receiverCanvas.height = receiverVideo.videoHeight;
+          ctx.drawImage(receiverVideo, 0, 0, receiverCanvas.width, receiverCanvas.height);
+          const imageData = ctx.getImageData(0, 0, receiverCanvas.width, receiverCanvas.height);
+          const code = jsQR(imageData.data, receiverCanvas.width, receiverCanvas.height);
+          if (code && code.data) {
+            receiverScanActive = false;
+            stopReceiverScan();
+            receiverAnswerText.value = code.data;
+            setStatus('Got answer from QR (receiver). Applying...');
+            try {
+              const remoteDesc = decodeSignal(code.data);
+              await pc.setRemoteDescription(remoteDesc);
+              setStatus('Receiver applied answer (waiting for connection...)');
+            } catch (err) {
+              console.error(err);
+              setStatus('Error applying answer from QR', '#f88');
+            }
+            return;
+          }
+        }
+        requestAnimationFrame(scanLoop);
+      }
+      scanLoop();
+    }
+
+    function stopReceiverScan() {
+      if (receiverStream) {
+        receiverStream.getTracks().forEach(t => t.stop());
+        receiverStream = null;
+      }
+      setStatus('Stopped receiver scan', '#aaa');
+    }
+
+    receiverScanAnswerBtn.addEventListener('click', () => {
+      startReceiverAnswerScan();
+    });
+  </script>
+</body>
+</html>
