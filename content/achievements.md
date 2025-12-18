@@ -30,7 +30,7 @@ I have also participated in the Linguistics Olympiad, but I do not have any sign
 
 ### Research Papers
 - **MM-LDTF**: Multi-Model Legal Document Translation Framework for Vernacular Languages, _Preprint at [doi:10.31219/osf.io/3nafz](https://doi.org/10.31219/osf.io/3nafz)_.
-- **<span style="font-variant: small-caps;">SubtaskEval</span>**: Benchmarking LLMs on Competitive Programming Subtasks, accepted at the _Deep Learning for Code (DL4C) Workshop, NeurIPS 2025_. _[Link](https://neurips.cc/virtual/2025/loc/san-diego/workshop/109562)_.
+- **<span style="font-variant: small-caps;">SubtaskEval</span>**: Benchmarking LLMs on Competitive Programming Subtasks, accepted at the _Deep Learning for Code (DL4C) Workshop, NeurIPS 2025_. _[Link](https://neurips.cc/virtual/2025/loc/san-diego/131667)_.
 
 ### Research Programs
 
