@@ -35,11 +35,11 @@ I have also participated in the Linguistics Olympiad, but I do not have any sign
 ### Research Programs
 
 - **RSI-INDIA 2025**: Selected for the program at IISc, Bangalore.
-- **Non-Trivial Research Foundations Program, Spring 2025**: Completed the program, and gave the interview for the research fellowship program
+- **Non-Trivial Research Foundations Program, Spring 2025**: Completed the program, and gave the interview for the research fellowship program.
 
 ### Research Fairs
 
-- **IRIS National Fair 2025-26**: Selected for the second cohort. Project submitted was <span style="font-variant: small-caps;">SubtaskEval</span>.
+- **IRIS National Fair 2025-26**: Selected for the second cohort. Project submitted was <span style="font-variant: small-caps;">SubtaskEval</span>. [Project video](https://www.youtube.com/watch?v=EUNg1RvLB_I).
 
 ---
 
