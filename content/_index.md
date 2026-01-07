@@ -4,7 +4,7 @@ This website is my personal blog where I share my personal experiences, tips, an
 
 ## Contact Me
 
-You can reach out to me on [samikgoyal@gmail.com](mailto:samikgoyal@gmail.com), on [LinkedIn](https://www.linkedin.com/in/samik-goyal/), or on discord at <u>@unforgettablepl</u>.
+You can reach out to me on [samikgoyal@gmail.com](mailto:samikgoyal@gmail.com), on [LinkedIn](https://www.linkedin.com/in/samik-goyal/), or on discord at <u>@forgettablepl</u>. <u>@unforgettablepl</u> has been permanently banned. Please do not DM that account.
 
 ## Archival
 
