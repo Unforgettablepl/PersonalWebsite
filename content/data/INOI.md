@@ -7,6 +7,26 @@ All the information has been copied from the emails sent to the participants.
 
 ---
 
+## INOI 2022
+
+<blockquote>
+
+### Medals:
+Gold Medal: 175 points</br>
+Silver Medal: 120 points</br>
+Bronze Medal: 87 points
+
+### Training Camp:
+Class XII: 138 points</br>
+Class XI: 125 points</br>
+Class X: 120 points</br>
+Class IX: 112 points</br>
+Class VIII and below: 87 points</br>
+Female: 81 points (for all classes)
+</blockquote>
+
+---
+
 ## INOI 2023
 
 <blockquote>
