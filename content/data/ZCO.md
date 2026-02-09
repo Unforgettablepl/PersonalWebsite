@@ -65,3 +65,28 @@ Class 9 : 16/200 (Male), 9/200 (Female)\
 Class 8 : 12/200 (Male), 9/200 (Female)\
 Class 7 and Below : 10/200 (Male), 9/200 (Female)
 </blockquote>
+
+---
+## ZCO 2026
+
+<blockquote>
+The tentative cutoffs to qualify for INOI-2026 through ZCO-2026 are as follows.
+
+Male students
+
+Class 12: 90 / 200\
+Class 11: 74 / 200\
+Class 10: 69 / 200\
+Class 9: 63 / 200\
+Class 8: 59 / 200\
+Class 7 or below: 50 / 200
+
+Female students
+
+Class 12: 73 / 200\
+Class 11: 64 / 200\
+Class 10: 57 / 200\
+Class 9: 39 / 200\
+Class 8: 28 / 200\
+Class 7 or below: 19 / 200
+</blockquote>
