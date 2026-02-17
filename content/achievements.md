@@ -10,6 +10,7 @@ title: "Achievements"
 - **IOI 2025 (Sucre, Bolivia)**: Silver Medalist
 - **IOITC 2025**: Selected for the Indian Team (Rank 1 in team selection test)
 - **IOITC 2024**: Selected for the Indian Team
+- **INOI 2026**: Gold Medalist
 - **INOI 2025**: Gold Medalist
 - **INOI 2024**: Silver Medalist
 - **USACO**: Gold (2024-2025)
