@@ -100,3 +100,38 @@ All Classes : 40
 All female students who have qualified for IOITC will be eligible to write these selection tests.
 
 </blockquote>
+
+---
+## INOI 2026
+
+<blockquote>
+
+Here are the tentative cutoffs for INOI-2026.
+
+1. Qualification for IOI Training Camp
+
+Male students
+
+Class 12: 118 / 300</br>
+Class 11: 116 / 300</br>
+Class 10: 116 / 300</br>
+Class 9: 108 / 300</br>
+Class 8: 95 / 300</br>
+Class 7 or below: 95 / 300
+
+Female students
+
+Class 12: 41 / 300</br>
+Class 11: 41 / 300</br>
+Class 10: 41 / 300</br>
+Class 9: 41 / 300</br>
+Class 8: 41 / 300</br>
+Class 7 or below: 41 / 300
+
+2. Medal cutoffs
+
+Gold Medal: 144/300</br>
+Silver Medal: 105/300</br>
+Bronze Medal: 66/300
+
+</blockquote>
