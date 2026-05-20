@@ -8,6 +8,7 @@ title: "Achievements"
 
 - **IOI 2024 (Alexandria, Egypt)**: Silver Medalist
 - **IOI 2025 (Sucre, Bolivia)**: Silver Medalist
+- **APIO 2026 (Taiwan)**: Gold Medalist
 - **IOITC 2025**: Selected for the Indian Team (Rank 1 in team selection test)
 - **IOITC 2024**: Selected for the Indian Team
 - **INOI 2026**: Gold Medalist
