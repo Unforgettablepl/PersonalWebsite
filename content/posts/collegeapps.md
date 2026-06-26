@@ -12,9 +12,11 @@ date: 2026-04-01
 Note in particular, the right to build or adapt upon this work has not been granted which includes but is not limited to _copying these essays for your own application_.
 </div>
 
-The application for MIT is unavailable as the PDF cannot be download after submission, and I forgot to download it before submitting.
+## American universities
 
-I applied to the regular round of Harvard, Yale, Princeton, Stanford, Brown, and Duke.
+The application for MIT is unavailable as the PDF cannot be downloaded after submission, and I forgot to download it before submitting.
+
+I applied to the regular round of Harvard, Yale, Princeton, Stanford, Brown, and Duke. I applied early to MIT. I was rejected from all seven universities
 
 - [Common App (Taken from Stanford University)](/archive/collegeapps/Common%20App%20%28Taken%20from%20Stanford%20University%29_Redacted.pdf)
 - [Harvard University](/archive/collegeapps/Harvard%20University_Redacted.pdf)
@@ -24,3 +26,19 @@ I applied to the regular round of Harvard, Yale, Princeton, Stanford, Brown, and
 - [Brown University](/archive/collegeapps/Brown%20University_Redacted.pdf)
 - [Brown University Writing Supplement](/archive/collegeapps/Brown%20University%20Writing%20Supplement_Redacted.pdf)
 - [Duke University](/archive/collegeapps/Duke%20University_Redacted.pdf)
+
+## Singaporean Universities
+
+I applied to the National University of Singapore and Nanyang Technological University. I was accepted to both universities to study Computer Science with the MoE Tuition Grant. I was also offered the TAISP scholarship at NTU. I also received an offer to NUS College. For NUS, I was interviewed for the Science & Technology Undergraduate Scholarship, the results are yet to come.
+
+The application for NTU is unavailable as the PDF cannot be downloaded after submission, and I forgot to download it before submitting.
+
+- [National University of Singapore](/archive/collegeapps/NUS_Redacted.pdf)
+
+## British Universities
+
+I applied to study Computer Science (G400) to Trinity College, University of Cambridge; University of Bristol; University of Warwick; and University College London. I also applied to study Mathematics and Computer Science (GG14) to Imperial College London. 
+
+I ended up withdrawing my application from UCL as they required me to give the TARA entrance exam, which I was not interested in doing. I also withdrew from ICL as they were taking too long to decide on my application (withdrew in early-april), and I did not want to study Mathematics.
+
+I received conditional offers from all the other three. I will release my UCAS application at a later date once my Cambridge scholarship results come.
