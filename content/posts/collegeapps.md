@@ -16,7 +16,7 @@ Note in particular, the right to build or adapt upon this work has not been gran
 
 The application for MIT is unavailable as the PDF cannot be downloaded after submission, and I forgot to download it before submitting.
 
-I applied to the regular round of Harvard, Yale, Princeton, Stanford, Brown, and Duke. I applied early to MIT. I was rejected from all seven universities
+I applied to the regular round of Harvard, Yale, Princeton, Stanford, Brown, and Duke. I applied early to MIT. I was rejected from all seven universities.
 
 - [Common App (Taken from Stanford University)](/archive/collegeapps/Common%20App%20%28Taken%20from%20Stanford%20University%29_Redacted.pdf)
 - [Harvard University](/archive/collegeapps/Harvard%20University_Redacted.pdf)
@@ -29,7 +29,7 @@ I applied to the regular round of Harvard, Yale, Princeton, Stanford, Brown, and
 
 ## Singaporean Universities
 
-I applied to the National University of Singapore and Nanyang Technological University. I was accepted to both universities to study Computer Science with the MoE Tuition Grant. I was also offered the TAISP scholarship at NTU. I also received an offer to NUS College. For NUS, I was interviewed for the Science & Technology Undergraduate Scholarship, the results are yet to come.
+I applied to the National University of Singapore and Nanyang Technological University. I was accepted to both universities to study Computer Science with the MoE Tuition Grant. I was also offered the TAISP scholarship at NTU. I also received an offer to NUS College and the Science & Technology Undergraduate Scholarship.
 
 The application for NTU is unavailable as the PDF cannot be downloaded after submission, and I forgot to download it before submitting.
 
@@ -41,4 +41,4 @@ I applied to study Computer Science (G400) to Trinity College, University of Cam
 
 I ended up withdrawing my application from UCL as they required me to give the TARA entrance exam, which I was not interested in doing. I also withdrew from ICL as they were taking too long to decide on my application (withdrew in early-april), and I did not want to study Mathematics.
 
-I received conditional offers from all the other three. I will release my UCAS application at a later date once my Cambridge scholarship results come.
+I received conditional offers from Cambridge, Bristol, and Warwick. I will release my UCAS application at a later date once my Cambridge scholarship results come.
