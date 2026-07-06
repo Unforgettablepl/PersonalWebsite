@@ -68,7 +68,6 @@ A lot of people have the view that American universities are just better that Eu
 
 Most of these people who have the "America Better" sentiment are unable to support this argument.
 
----
 [^1]: https://opportunityinsights.org/wp-content/uploads/2023/07/CollegeAdmissions_Paper.pdf.
 [^2]: https://568cartel.com/.
 [^3]: Based on my personal interactions with such kids.
