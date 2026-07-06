@@ -64,7 +64,7 @@ One of the arguments I have seen for these universities is that they have a dumb
 NUS/NTU attract a lot of international medallists from Asia though. NUS in particular has the highest number of IOI medallists after MIT and Cambridge.
 
 ### Personal Opinion
-A lot of people have the view that American universities are just better that European or Asian ones. However, this view has been changing recently in particular with the political atmosphere in the USA. I have never understood this. As, for objective measures, Europe or Asia is quite good as well.
+A lot of people have the view that American universities are just better than European or Asian ones. However, this view has been changing recently in particular with the political atmosphere in the USA. I have never understood this. As, for objective measures, Europe or Asia is quite good as well.
 
 Most of these people who have the "America Better" sentiment are unable to support this argument.
 
