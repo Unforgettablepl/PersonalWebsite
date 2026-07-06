@@ -40,7 +40,7 @@ As I have said before, most American universities have a very bad financial aid 
 
 The best universities here are MIT and Stanford. A lot of people seem to think that your essays matter a lot for these universities. I would beg to differ. I have seen only few cases which could not be explained simply by a achievements based criterion.
 
-MIT basically only admits Olympiad kids. You would need a gold medal at an Olympiad to go here. Besides that, I don't you need a lot going on.
+MIT basically only admits Olympiad kids. You would need a gold medal at an Olympiad to go here. Besides that, I don't think you need a lot going on.
 
 Stanford is as I have mentioned before a Need-Aware university. This means that the quality of Indian kids going to Stanford is shockingly low because of this.[^3] However, they rarely take some Indians with aid as well. These tend to be ones from the research competitions, primarily IRIS/ISEF.
 
@@ -53,7 +53,7 @@ I've seen the benchmark be around IOITC level for CS to get into Trinity. For ge
 
 A pretty good advantage of these universities is that they have three year courses instead of four years.
 ### Asian region
-The best universities here are NUS and NTU. There are good universities in Hong Kong as well. Even though both these universities use the normal system, it is significantly easier to get a scholarship in NTU (on the order of 10x). You also have the option of taking the MoE Tution Grant. Note that scholarships in NUS are competitive even for IOI medallists (as in you need to be ≥IOI Silver to have a good chance).
+The best universities here are NUS and NTU. There are good universities in Hong Kong as well. Even though both these universities use the normal system, it is significantly easier to get a scholarship in NTU (on the order of 10x). You also have the option of taking the MoE Tuition Grant. Note that scholarships in NUS are competitive even for IOI medallists (as in you need to be ≥IOI Silver to have a good chance).
 
 It is important to note that scholarships in Singapore come with a three or six year work bond. That is, you have to work for that number of years for a Singaporean entity. You don't have to necessarily work for the government or any other unwanted job. You have the freedom to choose your job.
 
