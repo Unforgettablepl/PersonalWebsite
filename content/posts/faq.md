@@ -103,3 +103,23 @@ A: I believe very firmly in the importance of rest. In my opinion, intellectual 
 
 **Q: What are you applying to / where are you going for college?**\
 A: Look at [the blog](/posts/collegeapps/) I have already written about this.
+
+## University Admissions - Cambridge
+
+**Q: What would be a good TMUA score for an interview?**\
+A: I got a $7.9$. Cambridge releases very detailed stats about the TMUA scores of offer holders so refer to that. I think anything in this ballpark should be fine though.
+
+**Q: How close are the CSAT mocks on openclimb.io to the actual thing?**\
+A: Pretty close I'd say. I can't reveal more as I am not allowed to.
+
+**Q: How much harder are the interview questions compared to the CSAT?**\
+A: No comments. I am not allowed to.
+
+**Q: What did you get on your CSAT / interview scores?**\
+A: Cambridge doesn't reveal these scores to students as far as I know. I did not receive any info at the very least.
+
+**Q: Is it reasonably possible to get in without national/international activities?**\
+A: I don't think the activities themselves matter. Your performance on admissions test and interview is what matters. It just so happens to be that they align well with the skills olympiad kids usually have.
+
+**Q: Do you have any specific advice for the interview?**\
+A: Think aloud and don't be afraid to say anything you are unsure about. Don't think quietly.
