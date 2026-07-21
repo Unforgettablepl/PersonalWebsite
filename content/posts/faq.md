@@ -107,7 +107,7 @@ A: Look at [the blog](/posts/collegeapps/) I have already written about this.
 ## University Admissions - Cambridge
 
 **Q: What would be a good TMUA score for an interview?**\
-A: I got a $7.9$. Cambridge releases very detailed stats about the TMUA scores of offer holders so refer to that. I think anything in this ballpark should be fine though.
+A: I got a 7.9. Cambridge releases very detailed stats about the TMUA scores of offer holders so refer to that. I think anything in this ballpark should be fine though.
 
 **Q: How close are the CSAT mocks on openclimb.io to the actual thing?**\
 A: Pretty close I'd say. I can't reveal more as I am not allowed to.
