@@ -9,7 +9,12 @@ date: 2026-07-06
 Before starting this, there are some ground rules to know of.
 1. This information pertains to *Indian citizens* applying for *stem* degrees.
 2. The claims in this post are **not purely from my own experience**, rather from what I have heard and seen with students all around me. However, this also means that I am biased as the people I've met are ones that attended the same events as me (IOITC/IOAITC/etc.).
+3. This post has some unconventional takes. Have a scientific mindset.
+	- Listen to both sides, and look at proofs for both arguments.
+	- At the end of the day, your college admissions are going to affect only you, so you should pick what to believe in.
+	- And as is the case in such matters, the actual truth is probably so complex it cannot be compressed into a piece of writing.
 ---
+
 ## The financial aid systems.
 
 Whether you ask for financial aid/scholarships matters a lot. Now, it makes perfect sense that your chances of success with aid will always be less than or equal to chances without. However, there is more to it. Broadly, we can classify universities that offer aid into three systems:
