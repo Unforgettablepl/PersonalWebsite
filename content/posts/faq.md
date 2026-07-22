@@ -9,6 +9,9 @@ draft: false
 It is funny to me to write a blog with this title. If you were sent a link to this, please assume that the sender did not mean to be rude. Rather, they wanted to save their and your time.
 
 ---
+Avighna has an [FAQ page](https://avighnac.com/blog/faq) as well! Admittedly with friendlier language.
+
+---
 
 Questions are grouped by topic. Feel free to ask unanswered questions in the comments.
 
