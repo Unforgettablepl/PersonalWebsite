@@ -12,6 +12,14 @@ date: 2026-04-01
 Note in particular, the right to build or adapt upon this work has not been granted which includes but is not limited to _copying these essays for your own application_.
 </div>
 
+---
+
+## My decision
+
+I have finally decided to study Computer Science at Trinity College, Cambridge.
+
+---
+
 ## American universities
 
 The application for MIT is unavailable as the PDF cannot be downloaded after submission, and I forgot to download it before submitting.
@@ -42,5 +50,7 @@ I applied to study Computer Science (G400) to Trinity College, University of Cam
 I ended up withdrawing my application from UCL as they required me to give the TARA entrance exam, which I was not interested in doing. I also withdrew from ICL as they were taking too long to decide on my application (withdrew in early-april), and I did not want to study Mathematics.
 
 I received conditional offers from Cambridge, Bristol, and Warwick. I rejected the offers of Bristol and Warwick in April. I got my AP Scores in July and confirmed my CS at Trinity College, Cambridge offer. 
+
+I also recieved a scholarship offer from Trinity jointly funded by Global Talent Fund (GTF) and the Trinity College Duxbury Fund. The value was GBP 32,406 towards the University Composition Fee plus the College Fee (GBP 13,689) for a total value of GBP 46,096 per annum. 
 
 - [UCAS](/archive/collegeapps/UCAS_Redacted.pdf)
