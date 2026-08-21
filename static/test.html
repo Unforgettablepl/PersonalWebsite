@@ -219,11 +219,27 @@
     function makeQRCode(container, text) {
       container.innerHTML = "";
       if (!text) return;
-      new QRCode(container, {
-        text: text,
-        width: 256,
-        height: 256
-      });
+      if (typeof QRCode === 'undefined') {
+        setStatus('QR code generator failed to load', '#f88');
+        return;
+      }
+      try {
+        new QRCode(container, {
+          text: text,
+          width: 256,
+          height: 256
+        });
+      } catch (err) {
+        console.error('Unable to generate QR code', err);
+        setStatus('Error generating QR code', '#f88');
+      }
+    }
+
+    const missingLibraries = [];
+    if (typeof QRCode === 'undefined') missingLibraries.push('QR generator');
+    if (typeof jsQR === 'undefined') missingLibraries.push('QR scanner');
+    if (missingLibraries.length) {
+      setStatus('Unable to load ' + missingLibraries.join(' and ') + '.', '#f88');
     }
 
     // --- Role selection UI ---
@@ -283,7 +299,14 @@
       pc.onicecandidate = (e) => {
         // When e.candidate is null, ICE gathering is complete
         if (!e.candidate && pc.localDescription) {
-          const blob = encodeSignal(pc.localDescription);
+          let blob;
+          try {
+            blob = encodeSignal(pc.localDescription);
+          } catch (err) {
+            console.error('Unable to encode connection signal', err);
+            setStatus('Error encoding connection signal', '#f88');
+            return;
+          }
           const type = pc.localDescription.type;
 
           if (currentRole === 'receiver' && type === 'offer') {
@@ -405,7 +428,12 @@
         y,
         t: Date.now(),
       };
-      dc.send(JSON.stringify(msg));
+      try {
+        dc.send(JSON.stringify(msg));
+      } catch (err) {
+        console.error('Unable to send touch data', err);
+        setStatus('Error sending touch data', '#f88');
+      }
     }
 
     touchArea.addEventListener('touchstart', (e) => {
@@ -480,6 +508,10 @@
     let senderStream = null;
     async function startSenderScan() {
       if (senderScanActive) return;
+      if (typeof jsQR === 'undefined') {
+        setStatus('QR scanner failed to load', '#f88');
+        return;
+      }
       try {
         senderStream = await navigator.mediaDevices.getUserMedia({
           video: { facingMode: 'environment' }
@@ -487,11 +519,19 @@
       } catch (err) {
         console.error(err);
         alert('Failed to access camera (sender).');
+        setStatus('Failed to access sender camera', '#f88');
         return;
       }
 
       senderVideo.srcObject = senderStream;
-      await senderVideo.play();
+      try {
+        await senderVideo.play();
+      } catch (err) {
+        console.error('Unable to play sender camera preview', err);
+        stopSenderScan(false);
+        setStatus('Unable to start sender camera preview', '#f88');
+        return;
+      }
       senderScanActive = true;
       setStatus('Scanning receiver QR (sender)...', '#ff8');
 
@@ -514,17 +554,26 @@
             return;
           }
         }
-        requestAnimationFrame(scanLoop);
+        requestAnimationFrame(() => {
+          scanLoop().catch(handleSenderScanError);
+        });
       }
-      scanLoop();
+      scanLoop().catch(handleSenderScanError);
     }
 
-    function stopSenderScan() {
+    function handleSenderScanError(err) {
+      console.error('Sender QR scan failed', err);
+      senderScanActive = false;
+      stopSenderScan(false);
+      setStatus('Error scanning receiver QR', '#f88');
+    }
+
+    function stopSenderScan(showStatus = true) {
       if (senderStream) {
         senderStream.getTracks().forEach(t => t.stop());
         senderStream = null;
       }
-      setStatus('Stopped sender scan', '#aaa');
+      if (showStatus) setStatus('Stopped sender scan', '#aaa');
     }
 
     senderScanOfferBtn.addEventListener('click', () => {
@@ -533,14 +582,14 @@
         return;
       }
       currentRole = 'sender';
-      startSenderScan();
+      startSenderScan().catch(handleSenderScanError);
     });
 
     async function onSenderGotOffer(blob) {
-      if (!pc) {
-        createPeer('sender');
-      }
       try {
+        if (!pc) {
+          createPeer('sender');
+        }
         const remoteDesc = decodeSignal(blob);
         await pc.setRemoteDescription(remoteDesc);
         const answer = await pc.createAnswer();
@@ -561,6 +610,10 @@
         alert('Start receiver first (create offer).');
         return;
       }
+      if (typeof jsQR === 'undefined') {
+        setStatus('QR scanner failed to load', '#f88');
+        return;
+      }
       try {
         receiverStream = await navigator.mediaDevices.getUserMedia({
           video: { facingMode: 'environment' }
@@ -568,11 +621,19 @@
       } catch (err) {
         console.error(err);
         alert('Failed to access camera (receiver).');
+        setStatus('Failed to access receiver camera', '#f88');
         return;
       }
 
       receiverVideo.srcObject = receiverStream;
-      await receiverVideo.play();
+      try {
+        await receiverVideo.play();
+      } catch (err) {
+        console.error('Unable to play receiver camera preview', err);
+        stopReceiverScan(false);
+        setStatus('Unable to start receiver camera preview', '#f88');
+        return;
+      }
       receiverScanActive = true;
       setStatus('Scanning sender answer QR (receiver)...', '#ff8');
 
@@ -602,21 +663,30 @@
             return;
           }
         }
-        requestAnimationFrame(scanLoop);
+        requestAnimationFrame(() => {
+          scanLoop().catch(handleReceiverScanError);
+        });
       }
-      scanLoop();
+      scanLoop().catch(handleReceiverScanError);
     }
 
-    function stopReceiverScan() {
+    function handleReceiverScanError(err) {
+      console.error('Receiver QR scan failed', err);
+      receiverScanActive = false;
+      stopReceiverScan(false);
+      setStatus('Error scanning sender answer QR', '#f88');
+    }
+
+    function stopReceiverScan(showStatus = true) {
       if (receiverStream) {
         receiverStream.getTracks().forEach(t => t.stop());
         receiverStream = null;
       }
-      setStatus('Stopped receiver scan', '#aaa');
+      if (showStatus) setStatus('Stopped receiver scan', '#aaa');
     }
 
     receiverScanAnswerBtn.addEventListener('click', () => {
-      startReceiverAnswerScan();
+      startReceiverAnswerScan().catch(handleReceiverScanError);
     });
   </script>
 </body>

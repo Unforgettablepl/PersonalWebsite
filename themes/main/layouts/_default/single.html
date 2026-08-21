@@ -15,7 +15,7 @@
         function setGiscusTheme() {
             const theme = document.documentElement.classList.contains('dark-mode') ? 'dark' : 'light';
             const iframe = document.querySelector('iframe.giscus-frame');
-            if (!iframe) return;
+            if (!iframe || !iframe.contentWindow) return;
 
             iframe.contentWindow.postMessage({
                 giscus: {
@@ -40,9 +40,16 @@
         script.setAttribute('data-lang', 'en');
         script.setAttribute('crossorigin', 'anonymous');
         script.async = true;
-        if (localStorage.getItem('darkMode') === 'true') {
-            document.documentElement.classList.add('dark-mode');
-            script.setAttribute('data-theme', 'dark');
+        try {
+            if (localStorage.getItem('darkMode') === 'true') {
+                document.documentElement.classList.add('dark-mode');
+                script.setAttribute('data-theme', 'dark');
+            }
+        } catch (error) {
+            if (!window.__darkModeStorageWarningShown) {
+                console.warn('Unable to access dark mode preference storage.', error);
+                window.__darkModeStorageWarningShown = true;
+            }
         }
     </script>
     <link rel="stylesheet" href="{{ (resources.Get "css/main.css" | resources.Minify).RelPermalink }}">

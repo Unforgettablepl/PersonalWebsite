@@ -11,8 +11,15 @@
   {{ end }}
   <link rel="canonical" href="{{ .Permalink }}">
   <script>
-    if (localStorage.getItem('darkMode') === 'true') {
-      document.documentElement.classList.add('dark-mode');
+    try {
+      if (localStorage.getItem('darkMode') === 'true') {
+        document.documentElement.classList.add('dark-mode');
+      }
+    } catch (error) {
+      if (!window.__darkModeStorageWarningShown) {
+        console.warn('Unable to access dark mode preference storage.', error);
+        window.__darkModeStorageWarningShown = true;
+      }
     }
   </script>
   <link rel="stylesheet" href="{{ (resources.Get "css/main.css" | resources.Minify).RelPermalink }}">
