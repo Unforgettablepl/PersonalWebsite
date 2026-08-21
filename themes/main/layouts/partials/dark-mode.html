@@ -1,0 +1,18 @@
+  <script>
+    if (localStorage.getItem('darkMode') === 'true') {
+      document.documentElement.classList.add('dark-mode');
+    }
+    function setGiscusTheme() {
+      const theme = document.documentElement.classList.contains('dark-mode') ? 'dark' : 'light';
+      const iframe = document.querySelector('iframe.giscus-frame');
+      if (!iframe) return;
+
+      iframe.contentWindow.postMessage({
+        giscus: {
+          setConfig: {
+            theme: theme
+          }
+        }
+      }, 'https://giscus.app');
+    }
+  </script>
