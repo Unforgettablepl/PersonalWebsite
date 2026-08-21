@@ -1,0 +1,15 @@
+  {{ template "_internal/google_analytics.html" . }}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  {{ if .IsHome }}
+  <title>{{ .Site.Title }}</title>
+  <meta name="description" content="{{ .Site.Params.Description }}">
+  {{ else }}
+  <title>{{ .Title }}</title>
+  <meta name="description" content="{{ .Description }}">
+  {{ end }}
+  {{ if .Site.Params.favicon }}
+  <link rel="canonical" href="/favicon.ico">
+  {{ end }}
+  <link rel="canonical" href="{{ .Permalink }}">
+  {{ partial "dark-mode.html" . }}

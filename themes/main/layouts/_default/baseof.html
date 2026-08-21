@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  {{ partial "head.html" . }}
+  {{ block "head" . }}{{ end }}
+  {{ partial "head-assets.html" . }}
+</head>
+<body>
+  <div style="max-width: min(900px,90vw);justify-content: center;margin: auto;">
+{{partialCached "navbar.html" .}}
+  {{ block "main" . }}{{ end }}
+  </div>
+</body>
+</html>
