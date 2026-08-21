@@ -24,27 +24,48 @@ jobs:
         run: zip -r site.zip public
       - name: Create new version on Zenodo
         run: |
-          set -e
-          
-          LATEST_VERSION_ID=$(curl -L https://zenodo.org/api/records/$CONCEPT_ID?access_token=$ZENODO_TOKEN | jq -r '.id')
+          set -Eeuo pipefail
+
+          if [[ -z "${ZENODO_TOKEN:-}" ]]; then
+            echo "::error::ZENODO_TOKEN is empty; cannot archive the site" >&2
+            exit 1
+          fi
+
+          validate_value() {
+            local name=$1
+            local value=$2
+            if [[ -z "$value" || "$value" == "null" ]]; then
+              echo "::error::$name is empty or null; cannot continue" >&2
+              exit 1
+            fi
+          }
+
+          LATEST_VERSION_ID=$(curl --fail-with-body -sS -L "https://zenodo.org/api/records/$CONCEPT_ID?access_token=$ZENODO_TOKEN" | jq -r '.id')
+          validate_value "LATEST_VERSION_ID" "$LATEST_VERSION_ID"
           echo "Latest version ID: $LATEST_VERSION_ID"
-          
-          NEW_VERSION_RESPONSE=$(curl -X POST https://zenodo.org/api/deposit/depositions/$LATEST_VERSION_ID/actions/newversion?access_token=$ZENODO_TOKEN)
-          
+
+          NEW_VERSION_RESPONSE=$(curl --fail-with-body -sS -X POST "https://zenodo.org/api/deposit/depositions/$LATEST_VERSION_ID/actions/newversion?access_token=$ZENODO_TOKEN")
+
           NEW_VERSION_ID=$(echo "$NEW_VERSION_RESPONSE" | jq -r '.id')
-          SITE_ZIP_LINK=$(echo "$NEW_VERSION_RESPONSE" | jq -r '.files[] | select(.filename == "site.zip") | .links.self')
+          validate_value "NEW_VERSION_ID" "$NEW_VERSION_ID"
+          SITE_ZIP_LINK=$(echo "$NEW_VERSION_RESPONSE" | jq -r '[.files[]? | select(.filename == "site.zip") | .links.self][0] // empty')
           echo "New version ID: $NEW_VERSION_ID"
-          NEW_VERSION_METADATA=$(echo "$NEW_VERSION_RESPONSE" | jq -r '.metadata')
-          
-          curl -i -X DELETE "$SITE_ZIP_LINK?access_token=$ZENODO_TOKEN"
-          echo "Deleted old site.zip and uploading new file"
-          
-          curl -i https://zenodo.org/api/deposit/depositions/$NEW_VERSION_ID/files?access_token=$ZENODO_TOKEN -F file=@site.zip
+          NEW_VERSION_METADATA=$(echo "$NEW_VERSION_RESPONSE" | jq -c '.metadata // empty')
+          validate_value "NEW_VERSION_METADATA" "$NEW_VERSION_METADATA"
+
+          if [[ -n "$SITE_ZIP_LINK" && "$SITE_ZIP_LINK" != "null" ]]; then
+            curl --fail-with-body -sS -X DELETE "$SITE_ZIP_LINK?access_token=$ZENODO_TOKEN"
+            echo "Deleted old site.zip and uploading new file"
+          else
+            echo "No existing site.zip found; skipping delete and uploading new file"
+          fi
+
+          curl --fail-with-body -sS -X POST "https://zenodo.org/api/deposit/depositions/$NEW_VERSION_ID/files?access_token=$ZENODO_TOKEN" -F file=@site.zip
           echo "Uploaded new site.zip"
 
           UPDATED_METADATA=$(jq --arg date "$(date +%Y-%m-%d)" 'del(.pids) | .publication_date = $date' <<< "$NEW_VERSION_METADATA")
-          curl -i -X PUT -H "Content-Type: application/json" https://zenodo.org/api/deposit/depositions/$NEW_VERSION_ID?access_token=$ZENODO_TOKEN -d "{\"metadata\":$UPDATED_METADATA}"
+          curl --fail-with-body -sS -X PUT -H "Content-Type: application/json" "https://zenodo.org/api/deposit/depositions/$NEW_VERSION_ID?access_token=$ZENODO_TOKEN" -d "{\"metadata\":$UPDATED_METADATA}"
           echo "Updated metadata with today's date"
 
-          curl -i -X POST https://zenodo.org/api/deposit/depositions/$NEW_VERSION_ID/actions/publish?access_token=$ZENODO_TOKEN
+          curl --fail-with-body -sS -X POST "https://zenodo.org/api/deposit/depositions/$NEW_VERSION_ID/actions/publish?access_token=$ZENODO_TOKEN"
           echo "Published new version"

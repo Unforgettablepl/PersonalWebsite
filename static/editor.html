@@ -60,10 +60,36 @@
     const editor = document.getElementById('editor');
     const preview = document.getElementById('preview');
 
-    marked.setOptions({ gfm: true, breaks: true });
+    let markdownParser = typeof marked === 'undefined' ? null : marked;
+    let storageWarningShown = false;
+
+    function warnStorageFailure(error) {
+      if (storageWarningShown) return;
+      console.warn('Unable to persist editor content.', error);
+      storageWarningShown = true;
+    }
+
+    if (!markdownParser || typeof markdownParser.parse !== 'function') {
+      preview.textContent = 'Markdown preview unavailable: the Markdown library failed to load.';
+      markdownParser = null;
+    } else {
+      try {
+        markdownParser.setOptions({ gfm: true, breaks: true });
+      } catch (error) {
+        console.error('Unable to configure Markdown preview.', error);
+        preview.textContent = 'Markdown preview unavailable: the Markdown library failed to initialize.';
+        markdownParser = null;
+      }
+    }
 
     function render() {
-      preview.innerHTML = marked.parse(editor.value);
+      if (!markdownParser) return;
+      try {
+        preview.innerHTML = markdownParser.parse(editor.value);
+      } catch (error) {
+        console.error('Unable to render Markdown preview.', error);
+        preview.textContent = 'Markdown preview unavailable: the content could not be rendered.';
+      }
       // keep alignment after (re)render
       syncOnce();
     }
@@ -123,8 +149,20 @@
       try {
         const saved = localStorage.getItem(KEY);
         if (saved !== null) { editor.value = saved; render(); }
-        editor.addEventListener('input', () => localStorage.setItem(KEY, editor.value));
-      } catch (_) {}
+      } catch (error) {
+        warnStorageFailure(error);
+      }
+      try {
+        editor.addEventListener('input', () => {
+          try {
+            localStorage.setItem(KEY, editor.value);
+          } catch (error) {
+            warnStorageFailure(error);
+          }
+        });
+      } catch (error) {
+        warnStorageFailure(error);
+      }
     })();
   </script>
 </body>
