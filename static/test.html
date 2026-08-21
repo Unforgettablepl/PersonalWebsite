@@ -4,6 +4,7 @@
   <meta charset="utf-8">
   <title>LAN Touch P2P (QR WebRTC)</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
   <style>
     :root {
       color-scheme: dark;
@@ -191,9 +192,9 @@
   </main>
 
   <!-- QR code generator -->
-  <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js" integrity="sha384-3zSEDfvllQohrq0PHL1fOXJuC/jSOO34H46t6UQfobFOmxE5BpjjaIJY5F2/bMnU" crossorigin="anonymous"></script>
   <!-- QR code scanner -->
-  <script src="https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.js" integrity="sha384-b5Ya4Bq3qCyz39m2ISh+4DxjAIljdeFwK/BsXLuj9gugaNwAcj/ia15fxNZL9Nlx" crossorigin="anonymous"></script>
 
   <script>
     // --- Global WebRTC state ---
@@ -212,7 +213,11 @@
       return btoa(JSON.stringify(desc));
     }
     function decodeSignal(blob) {
-      return JSON.parse(atob(blob.trim()));
+      const desc = JSON.parse(atob(blob.trim()));
+      if (!desc || (desc.type !== 'offer' && desc.type !== 'answer') || typeof desc.sdp !== 'string') {
+        throw new Error('Invalid session description blob');
+      }
+      return { type: desc.type, sdp: desc.sdp };
     }
 
     // Simple QR helper: clear container before drawing new code
