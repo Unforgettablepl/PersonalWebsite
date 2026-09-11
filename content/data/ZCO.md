@@ -1,6 +1,6 @@
 ---
 title: "ZCO Past Cutoffs"
-description: "Cutoffs from ZCO 2023 to 2025."
+description: "Cutoffs from ZCO 2023 to 2026."
 date: "2025-10-07"
 ---
 All the information has been copied from the emails sent to the participants.
