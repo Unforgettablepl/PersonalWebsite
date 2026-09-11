@@ -1,6 +1,6 @@
 ---
 title: "ZIO Past Cutoffs"
-description: "Cutoffs from ZIO 2023 to 2025."
+description: "Cutoffs from ZIO 2023 to 2026."
 date: "2025-10-14"
 ---
 All the information has been copied from the official IARCS website.
